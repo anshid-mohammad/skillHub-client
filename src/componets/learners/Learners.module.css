@@ -1,0 +1,143 @@
+/* Container Styles */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Left Section (Image) */
+.teacherLeft {
+  
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: 1; /* Default order for larger screens */
+  height: 40rem;
+}
+
+.teacherImage {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Right Section (Text) */
+.teacherRight {
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  height: 40rem;
+
+  order: 2; /* Default order for larger screens */
+}
+
+.headerText {
+  font-family: "Source Serif Pro", "Noto Serif", serif;
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.subtextHeader {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 15px;
+}
+
+.learnersBtn {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #08745a, #109b19);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.learnersBtn:hover {
+  background: linear-gradient(90deg, #0a8f67, #1dbb23); /* Brighter green */
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.learnersBtn:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Styles */
+
+/* Mobile and smaller screens */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    text-align: center;
+
+  }
+
+  .teacherLeft {
+    order: 1; /* Ensure image appears first */
+    width: 100%; /* Full width for image section */
+margin-top: 100px;
+  }
+
+  .teacherRight {
+    order: 2; /* Ensure text appears below the image */
+    align-items: center; /* Center align text */
+    width: 100%; /* Full width for text section */
+    text-align: center;
+
+  }
+
+  .headerText {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+
+  .ctaButtons {
+    justify-content: center;
+  }
+
+  .teacherImage {
+    max-width: 80%; /* Adjust image size for smaller screens */
+  }
+}
+
+/* Small mobile phones */
+@media (max-width: 480px) {
+  .headerText {
+    font-size: 1.5rem;
+  }
+
+  .learnersBtn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .teacherImage {
+    max-width: 90%; /* Adjust image size */
+  }
+}

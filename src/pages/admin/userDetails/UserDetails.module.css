@@ -1,0 +1,281 @@
+/* Container Styles */
+.applicantContainer {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Back Button */
+  .mainBackButton {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #000000;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .backButton:hover {
+    color: #000000;
+  }
+  
+  /* Table Styles */
+  .tableWrapper {
+    overflow-x: auto;
+  }
+  
+  .applicantTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .applicantTable th,
+  .applicantTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .applicantTable th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .applicantTable td {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .applicantTable .studentName {
+    display: flex;
+    align-items: center;
+  }
+  
+  .applicantTable .studentName img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .applicantTable .studentName p {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .applicantTable .email {
+    color: #888;
+    font-size: 14px;
+  }
+  
+  /* Status Styles */
+  .active {
+    color: green;
+  }
+  
+  .inactive {
+    color: gray;
+  }
+  
+  .offline {
+    color: red;
+  }
+  
+  /* Button Styles */
+  .btnViewCLick {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(90deg, #0056b3, #003f7f);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+  }
+  
+  .btnViewCLick:hover {
+    background-color: #2153b0;
+  }
+  
+  .chatButton,
+    .paymentButton {
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(to right, #1fc8db, #2cb5e8);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .chatButton:hover,
+    .paymentButton:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #1fc8db, #2cb5e8);
+    }
+    
+    /* Chat button specific gradient */
+    .chatButton {
+      background: linear-gradient(90deg, #0056b3, #003f7f);
+    }
+    
+    .chatButton:hover {
+      background: linear-gradient(to right, #1fc8db, #2cb5e8);
+    }
+  
+  /* Error Message Styles */
+  .error {
+    color: #dc3545;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  /* Modal Styles */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 50%;
+    max-height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .modalImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+  }
+  /* Button Styling */
+.moreDetailsBtn {
+    background-color: #007BFF; /* Blue background */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    padding: 8px 16px; /* Padding for the button */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+  }
+  
+  .moreDetailsBtn:hover {
+    background-color: #0056b3; /* Darker blue when hovered */
+  }
+  
+  .moreDetailsBtn:focus {
+    outline: none; /* Remove default outline on focus */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Add a custom focus outline */
+  }
+  
+  .closeButton:hover {
+    color: #dc3545;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .applicantContainer {
+      padding: 10px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    .applicantTable {
+      font-size: 14px;
+    }
+  
+    .applicantTable th,
+    .applicantTable td {
+      padding: 8px;
+    }
+  
+    .backButton {
+      font-size: 20px;
+    }
+  
+    .modalContent {
+      max-width: 90%;
+      max-height: 90%;
+    }
+  
+    .studentName img {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .studentName p {
+      font-size: 14px;
+    }
+  
+    .btnViewCLick,
+    .chatButton {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .backButton {
+      font-size: 18px;
+    }
+  
+    .btnViewCLick,
+    .chatButton {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    .modalContent {
+      padding: 10px;
+    }
+  }
+  

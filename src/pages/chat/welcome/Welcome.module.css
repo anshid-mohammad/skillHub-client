@@ -1,0 +1,48 @@
+/* Main Container */
+.container {
+  width: 100%;
+  max-width: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  background-color: #ecf0f1;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+/* Robot Icon */
+.chatImage {
+  width: 300px; /* Adjust size as needed */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.welcomeHeader {
+  font-family: initial;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 5rem;
+}
+
+.welcomeHeader span {
+  color: #3498db;
+}
+
+.welcomesub {
+  font-family: initial;
+
+  font-size: 1.5rem;
+  color: #7f8c8d;
+  margin-bottom: 5rem;
+
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .container {
+    display: none;
+  }
+}

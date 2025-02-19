@@ -1,0 +1,162 @@
+.favoriteHeading {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .courseContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  .unsaveButton {
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: flex;
+    background: linear-gradient(135deg,rgba(8, 116, 90, 1), #15980e);
+
+    align-items: center;
+    justify-content: center; /* Center text & icon inside the button */
+    gap: 8px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(41, 157, 8, 0.5);
+    width: 100%; /* Make button take full width */
+    max-width: 200px; /* Limit button width */
+    margin: 10px auto; /* Center the button horizontally */
+}
+
+.unsaveButton:hover {
+    background: linear-gradient(135deg, #cc0000, #990000);
+    box-shadow: 0px 6px 14px rgba(204, 0, 0, 0.7);
+    transform: scale(1.05);
+}
+
+.unsaveButton:active {
+    transform: scale(0.98);
+    box-shadow: 0px 3px 8px rgba(204, 0, 0, 0.6);
+}
+
+/* Ensure button container is centered */
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+  .courseCard {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .courseCard:hover {
+    transform: scale(1.03);
+  }
+  
+  .imageContainer {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  .courseImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .cardBody {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .courseName {
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 5px;
+  }
+  
+  .location {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: gray;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+  
+  .icon {
+    margin-right: 5px;
+    color: #666;
+  }
+  
+  .pricing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .originalPrice {
+    text-decoration: line-through;
+    color: gray;
+    font-size: 14px;
+  }
+  
+  .discountedPrice {
+    font-size: 18px;
+    font-weight: bold;
+    color: #27ae60;
+  }
+  
+  .discount {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #d63031;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .savedButton {
+    background: #ff9800;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    width: 100%;
+    font-weight: bold;
+  }
+  
+  .savedButton svg {
+    font-size: 1rem;
+  }
+  
+  .noFavorites {
+    text-align: center;
+    font-size: 16px;
+    color: gray;
+    margin-top: 20px;
+  }
+  

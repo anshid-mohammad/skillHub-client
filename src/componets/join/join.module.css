@@ -1,0 +1,87 @@
+.container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30rem;
+  }
+  
+  .headerText {
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: "Source Serif Pro", serif;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .buttons {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between buttons */
+  }
+  
+  .btn {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(90deg, #08745a, #109b19);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    width: 220px; /* Fixed button width */
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect */
+.btn:hover {
+    background: linear-gradient(90deg, #066e50, #0c8615);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+/* Active (click) effect */
+.btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Add a subtle glowing animation */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(16, 155, 25, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(16, 155, 25, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(16, 155, 25, 0.5); }
+}
+
+.btn:hover {
+    animation: glow 1.5s infinite alternate;
+}
+
+  
+  .btn:hover {
+    background-color: #13b731; /* Slightly lighter green */
+  }
+  
+  @media (max-width: 768px) {
+    .headerText {
+      font-size: 1.5rem; /* Smaller font for smaller screens */
+    }
+  
+    .btn {
+      width: 100%; /* Full width on smaller devices */
+      max-width: 300px; /* Limit max width */
+    }
+  }
+  

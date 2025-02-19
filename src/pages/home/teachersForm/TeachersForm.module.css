@@ -1,0 +1,327 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  padding: 2rem;
+  /* background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); */
+}
+
+.courseForm {
+  overflow-y: auto;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  
+  /* Enable scrollbar */
+  max-height: 80vh; /* Adjust height as needed */
+  overflow-y: auto;
+}
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.popup-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Popup Content */
+.popup-content {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Popup Header */
+.popup-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 1rem;
+}
+
+/* Popup Text */
+.popup-text {
+  font-size: 1rem;
+  color: #555555;
+  margin-bottom: 1.5rem;
+}
+
+/* Close Button */
+.popup-close {
+  background-color: #ff4c4c;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.popup-close:hover {
+  background-color: #e63939;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Custom scrollbar */
+.courseForm::-webkit-scrollbar {
+  width: 8px;
+}
+
+.courseForm::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.courseForm::-webkit-scrollbar-thumb {
+  background: #0056b3;
+  border-radius: 10px;
+}
+
+.courseForm::-webkit-scrollbar-thumb:hover {
+  background: #003f7f;
+}
+
+
+.maintext {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2d3748;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.formGroup label {
+  font-weight: bold;
+  color:#0056b3;
+  font-size: 1rem;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 0.85rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: #f9fafb;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #63b3ed;
+  box-shadow: 0 0 10px rgba(99, 179, 237, 0.3);
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.lessonsContainer {
+  grid-column: 1 / -1;
+  border-top: 2px dashed #e2e8f0;
+  padding-top: 2rem;
+  margin-top: 1rem;
+}
+
+.lessonsContainer h3 {
+  font-size: 1.5rem;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.lessonGroup {
+  background: #edf2f7;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  position: relative;
+  border: 1px solid #e2e8f0;
+}
+
+.lessonGroup div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lessonGroup label {
+  font-weight: bold;
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+.lessonGroup input,
+.lessonGroup textarea {
+  padding: 0.85rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: #f9fafb;
+}
+
+.lessonGroup textarea {
+  resize: vertical;
+  font-family: 'Roboto', sans-serif;
+}
+
+.lessonGroup input:focus,
+.lessonGroup textarea:focus {
+  outline: none;
+  border-color: #63b3ed;
+  box-shadow: 0 0 10px rgba(99, 179, 237, 0.3);
+}
+
+.addLessonButton,
+.removeLessonButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.addLessonButton {
+  background: linear-gradient(90deg, #616364, #44484b);
+  color: white;
+  grid-column: 1 / -1;
+  justify-self: start;
+  text-transform: uppercase;
+}
+
+.addLessonButton:hover {
+  background: linear-gradient(135deg, #2b6cb0, #4299e1); /* Hover gradient */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.addLessonButton:disabled {
+  background: linear-gradient(135deg, #a0aec0, #cbd5e0); /* Disabled gradient */
+  cursor: not-allowed;
+  box-shadow: none; /* Remove shadow when disabled */
+}
+
+.removeLessonButton {
+  background-color: #636c67;
+  color: white;
+  grid-column: 1 / -1;
+  justify-self: start;
+  text-transform: uppercase;
+}
+
+.removeLessonButton:hover {
+  background-color: #c53030;
+  transform: scale(1.05);
+}
+
+.addButton {
+  grid-column: 1 / -1;
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  justify-self: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Button shadow */
+}
+
+.addButton:hover {
+  background: linear-gradient(135deg, #2b6cb0, #4299e1); /* Hover gradient */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.addButton:disabled {
+  background: linear-gradient(135deg, #a0aec0, #cbd5e0); /* Disabled gradient */
+  cursor: not-allowed;
+  box-shadow: none; /* Remove shadow when disabled */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .courseForm {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  .lessonGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .formContainer {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .courseForm {
+    padding: 1.5rem;
+  }
+
+  .formGroup input,
+  .formGroup select,
+  .formGroup textarea {
+    padding: 0.65rem;
+  }
+}

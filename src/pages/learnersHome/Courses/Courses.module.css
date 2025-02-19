@@ -1,0 +1,411 @@
+/* General heading styles */
+.coursesheading {
+    text-align: center;
+    margin: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  /* Course container */
+  .courseavailable {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Course card styles */
+  .coursecard {
+    margin-top: 20px;
+
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 14rem; /* Default width for desktop */
+  }
+  
+  .coursecard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Image container - Adjust size */
+  .imagecontainer {
+    width: 100%;
+    height: 150px; /* Reduced height for image */
+    overflow: hidden;
+  }
+  
+  .courseimage {
+    width: 100%; /* Ensure the image fills the container */
+    height: 100%; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure image covers the container without distortion */
+  }
+  
+  /* Card content */
+ /* Card body adjustments */
+.cardbody {
+  padding: 18px;
+  text-align: left;
+  position: relative; /* Make the card body a relative container for absolute positioning */
+}
+
+/* Favorite button (icon) positioning */
+.favoriteButton {
+  margin-left: 140px;
+  position: absolute;
+  top: 1px;
+  right: 1px; /* Position the button at the top right corner */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.6rem; /* Adjust size as needed */
+}
+.discount {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.discount svg {
+  margin-right: 5px;
+}
+
+.discount span {
+  color: green; /* Style the discount amount text */
+  font-weight: bold;
+}
+/* Location and Description icon styles */
+.location{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.location svg {
+  margin-right: 5px;
+}
+
+
+/* If you want the button size to be smaller or bigger, you can modify it here */
+.favoriteButton:hover {
+  color: red; /* Optional: Add hover effect */
+}
+
+  .cardbody h5 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .cardbody p {
+    margin: 5px 0 0;
+    font-size: 0.8rem;
+    color: #555;
+  }
+  
+  /* Button container */
+  .buttoncontainer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .actionbutton {
+    background-color: white;
+    color: rgba(8, 116, 90, 1);
+    border: 2px solid rgba(8, 116, 90, 1);
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .actionbutton:hover {
+    background-color: rgba(8, 116, 90, 1);
+    color: white;
+  }
+  
+  .actionbutton:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(8, 116, 90, 0.3);
+  }
+  
+  .actionbutton:active {
+    background-color: rgba(6, 90, 70, 1);
+    transform: translateY(1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
+  /* Favorite button styles */
+/* .favoriteButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ff4081;
+  transition: color 0.3s;
+}
+
+.favoriteButton:hover {
+  color: #d500f9;
+} */
+
+/* Offer tag styles */
+.offerTag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(8, 116, 90, 1);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Enroll button styles */
+.enrollButton {
+  background: linear-gradient(135deg,rgba(8, 116, 90, 1), #15980e);
+  color: white;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.30); 
+}
+.favoriteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: transform 0.2s ease-in-out;
+  margin-left: auto;
+}
+
+.favoriteButton:hover {
+  transform: scale(1.1);
+}
+
+/* Red Heart (Filled) */
+.favoriteButton svg {
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+/* Default Heart (Outlined) */
+.favoriteButton:hover svg {
+  color: darkred;
+}
+
+.enrollButton:hover {
+  background: linear-gradient(135deg,rgba(8, 116, 90, 1), #15980e);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Darker shadow on hover */
+  transform: translateY(-2px); /* Slightly lifts the button on hover */
+}
+
+.enrollButton:focus {
+  outline: none; /* Removes default focus outline */
+  box-shadow: 0 0 0 4px rgba(255, 64, 129, 0.3); /* Soft focus outline effect */
+}
+
+.enrollButton:active {
+  background: linear-gradient(135deg,rgba(8, 116, 90, 1), #15980e);
+  transform: translateY(2px); /* Button slightly moves down on click */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Shadow reset after click */
+}
+/* Adjust coursecard to be relative for positioning */
+.coursecard {
+  margin-top: 20px;
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative; /* Added for absolute positioning of favorite and offer */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 14rem;
+}
+.pricing {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.originalPrice {
+  text-decoration: line-through;
+  color: gray;
+  font-size: 0.9rem;
+}
+.discountedPrice {
+  font-weight: bold;
+  color: #28a745;
+}
+.savedButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ff4081;
+  transition: color 0.3s;
+}
+
+.savedButton svg {
+  font-size: 1rem;
+}
+
+  /* Responsive styles */
+  @media screen and (max-width: 1024px) {
+    .courseavailable {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+    .favoriteButton {
+      margin-top: 0.1px;
+      padding: 0.6px;
+      transition: transform 0.2s ease-in-out;
+    }
+    .pricing {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .originalPrice {
+      text-decoration: line-through;
+      color: gray;
+      font-size: 0.6rem;
+    }
+ 
+.discountedPrice {
+  font-size: 10px;
+  font-weight: bold;
+  color: #28a745;
+}
+
+    .imagecontainer {
+      width: 100%;
+      height: 100px; /* Reduced height for image */
+      overflow: hidden;
+    }
+    .discount {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      font-size: .8rem;
+      color: #555;
+    }
+    .location{
+      display: none;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .coursecard {
+      width: auto;
+      margin-top: 20px;
+    }
+  
+    .cardbody h5 {
+      font-size: 1rem;
+    }
+  
+    .cardbody p {
+      font-size: 0.8rem;
+    }
+  
+    .actionbutton {
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .courseavailable {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+  
+    .location{
+      display: none;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .coursecard {
+      width: 8rem;
+    }
+  
+    .cardbody h5 {
+      font-size: 0.9rem;
+    }
+  
+    .cardbody p {
+      font-size: 0.75rem;
+    }
+  
+    .actionbutton {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .coursesheading {
+      font-size: 1.5rem;
+    }
+  
+    .courseavailable {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .location{
+      display: none;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .coursecard {
+      width: 7rem;
+    }
+  
+    .cardbody h5 {
+      font-size: 0.8rem;
+    }
+  
+    .cardbody p {
+      font-size: 0.7rem;
+    }
+  
+    .actionbutton {
+      font-size: 0.85rem;
+      padding: 6px 12px;
+    }
+  }
+  

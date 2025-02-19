@@ -1,0 +1,154 @@
+.main-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows elements to wrap on smaller screens */
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* Default Styles for Desktop */
+.header-left {
+  
+  float: left;
+  width: 50%;
+  height: 32rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-right {
+  float: left;
+  width: 50%;
+  height: 32rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.first-image {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-text {
+  margin-top: 20px;
+  font-family: "Source Serif Pro", "Noto Serif", serif;
+  font-weight: 600;
+  position: relative;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.header-text::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 70%;
+  height: 2px;
+  background-color: rgb(141, 204, 102);
+  transform: translateY(100%);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center; /* Centers buttons */
+  flex-wrap: wrap; /* Ensures responsiveness */
+}
+
+.cta-buttons .btn {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 220px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cta-buttons .learners-btn {
+  background: linear-gradient(90deg, #08745a, #109b19);
+}
+
+.cta-buttons .teachers-btn {
+  background: linear-gradient(90deg, #08745a, #109b19);
+}
+
+.cta-buttons .btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.cta-buttons .btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.subtext-header {
+  margin: 20px 0;
+  font-size: 1rem;
+  color: #037024;
+}
+
+/* Responsive Styles for Mobile */
+@media (max-width: 768px) {
+  .container {
+    text-align: center;
+  }
+
+  .header-left,
+  .header-right {
+    width: 100%; /* Take full width on smaller screens */
+    height: auto;
+  }
+
+  .header-left {
+    order: 1; /* Ensure image appears first */
+  }
+
+  .header-right {
+    order: 2; /* Ensure text and buttons appear after the image */
+    align-items: center; /* Center align text and buttons */
+    text-align: center;
+  }
+
+  /* Adjust Image Size on Mobile */
+  img {
+    width: 21rem; /* Smaller image on mobile */
+  }
+
+  .header-text {
+    margin-top: 20px;
+    font-size: 2rem; /* Adjust font size on mobile */
+    text-align: center;
+  }
+
+  .cta-buttons {
+    justify-content: center; /* Center buttons */
+    gap: 10px; /* Reduce gap between buttons */
+  }
+
+  .cta-buttons .btn {
+    width: 150px; /* Make buttons smaller on mobile */
+    max-width: 300px; /* Limit the max width */
+    padding: 12px 15px; /* Increase button padding for better touch interaction */
+    font-size: 0.9rem; /* Reduce font size */
+  }
+
+  .subtext-header {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  background: #ffffff;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+  border-bottom: 1px solid #ddd;
+}
+
+/* Back Button */
+.mainBackButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important; /* Hide elements when needed */
+}
+
+/* Contacts List */
+/* Contacts List */
+.contactsList {
+  width: 30%;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  background: white;
+}
+
+/* Chat container - Hidden on mobile until a contact is selected */
+.chatContainer {
+  flex: 1;
+  display: none;
+}
+
+/* Show chatContainer when a chat is selected */
+.chatContainer.active {
+  display: flex;
+  flex-direction: column;
+}
+.mainbackButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .contactsList {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease;
+  }
+  .mainbackButton{
+    display: none;
+  }
+  /* Hide contacts list when chat is open */
+  .contactsList.hidden {
+    display: none;
+  }
+
+  .chatContainer {
+    width: 100%;
+    display: none;
+  }
+
+  .chatContainer.active {
+    display: flex;
+  }
+
+  .mainBackButton {
+    display: none; /* Hide main back button on mobile */
+  }
+  .header{
+    display: none;
+  }
+}

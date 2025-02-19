@@ -1,0 +1,146 @@
+/* YourCourses.module.css */
+.container {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+  }
+  
+  .header {
+    background: linear-gradient(135deg, #0056b3, #2563eb);
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+  }
+  
+  .headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .titles {
+    color: white;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    color: white;
+
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  .profileSection {
+    text-align: center;
+    color: white;
+  }
+  
+  .profileImage {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .userName {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  
+  .statsSection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .statItem {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+  
+  .statItem:hover {
+    transform: translateY(-2px);
+  }
+  
+  .icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .statNumber {
+    display: block;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .statLabel {
+    font-size: 1.1rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+  
+  /* Status colors */
+  /* .approved { background-color: #dcfce7; } */
+  .approved .icon { color: #22c55e; }
+  .approved .statNumber { color: #16a34a; }
+  
+  /* .pending { background-color: #fef9c3; } */
+  .pending .icon { color: #eab308; }
+  .pending .statNumber { color: #ca8a04; }
+  
+  /* .inProgress { background-color: #dbeafe; } */
+  .inProgress .icon { color: #3b82f6; }
+  .inProgress .statNumber { color: #2563eb; }
+  
+  /* .rejected { background-color: #fee2e2; } */
+  .rejected .icon { color: #ef4444; }
+  .rejected .statNumber { color: #dc2626; }
+  
+  @media (max-width: 768px) {
+    .headerContent {
+      flex-direction: column;
+      text-align: center;
+      gap: 2rem;
+    }
+  
+    .title {
+      font-size: 2rem;
+    }
+  
+    .statsSection {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 1rem;
+    }
+  
+    .statsSection {
+      grid-template-columns: 1fr;
+    }
+  
+    .statNumber {
+      font-size: 2rem;
+    }
+  }

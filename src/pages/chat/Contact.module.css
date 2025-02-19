@@ -1,0 +1,115 @@
+.container {
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+  color: rgb(15, 15, 15);
+  padding: 1rem;
+  overflow-y: auto;
+  border-radius: 10px; /* Added slight roundness for better UI */
+}
+
+/* Branding Section */
+.brand {
+  font-family: initial;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.mainBackButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover; /* Ensures proper image scaling */
+}
+
+/* Contacts List */
+.contactsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Individual Contact Card */
+.contactCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1); /* Light transparent background */
+}
+
+.contactCard:hover {
+  background: linear-gradient(90deg, #34495e, #34495e);
+  transform: scale(1.02); /* Slight scale-up effect */
+}
+
+/* Selected Contact */
+.selected {
+  background: linear-gradient(90deg,  #34495e,  #34495e);
+  color: white;
+  font-weight: bold;
+}
+
+/* Avatar Styling */
+.avatarImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+/* Username Styling */
+.name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Loading, Error, No Contacts */
+.loading,
+.error,
+.noContacts {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: #ecf0f1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    height: auto;
+    padding: 0.8rem;
+  }
+  .mainBackButton {
+    display: none;
+   
+  }
+  .brand {
+    justify-content: center;
+  }
+
+  .contactsList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contactCard {
+    width: 100%;
+    max-width: 220px;
+  }
+}

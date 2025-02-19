@@ -1,0 +1,213 @@
+/* ApprovedCourses.module.css */
+
+.progressContainer {
+  max-width: 1200px;
+  max-height: 550px; /* Set a height to make scrolling visible */
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Enables scrolling when content overflows */
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+/* Customize Scrollbar */
+.progressContainer::-webkit-scrollbar {
+  width: 8px; /* Slightly wider for better visibility */
+}
+
+.progressContainer::-webkit-scrollbar-thumb {
+  background-color: #0099ff;
+  border-radius: 5px;
+}
+
+.progressContainer::-webkit-scrollbar-track {
+  background: #ddd; /* Light background for contrast */
+  border-radius: 5px;
+}
+
+.backButton {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  color: #000000;
+}
+
+h2 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2.2rem;
+  position: relative;
+}
+
+
+.progressItem {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.progressItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.statusWrapper {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.status {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.progressBarWrapper {
+  position: relative;
+  height: 20px;
+  margin: 1.5rem 0;
+}
+
+.dotsWrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 50%;
+}
+
+.progressBar {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 12px;
+  border-radius: 6px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 0.5rem;
+}
+
+.progressText {
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.description {
+  color: #4a5568;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.description strong {
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.chatButton,
+.paymentButton {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.chatButton {
+  background: #4a90e2;
+  color: white;
+}
+
+.chatButton:hover {
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+.paymentButton {
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+  cursor: pointer;
+  transition: all 0.3s ease;  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.30); 
+}
+
+.paymentButton:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(92, 184, 92, 0.3);
+}
+
+/* Status colors */
+.status[data-status="pending"] { color: #5d89bf; }
+.status[data-status="under-review"] { color: #365dbe; }
+.status[data-status="approved"] { color: #0056b3; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .progressContainer {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .progressItem {
+    padding: 1.5rem;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .chatButton,
+  .paymentButton {
+    width: 100%;
+    text-align: center;
+  }
+}

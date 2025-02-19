@@ -1,0 +1,142 @@
+/* PaymentReceipt.module.css */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.headerOne {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.courseCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.backButton {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  color: rgb(17, 16, 16);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+
+.photo {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem auto 2rem;
+  display: block;
+  object-fit: cover;
+}
+
+.courseCard p {
+  font-size: 1.1rem;
+  margin: 0.8rem 0;
+  color: #34495e;
+  line-height: 1.6;
+}
+
+.courseCard strong {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.courseCard h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+.courseCard ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.courseCard li {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+  border-left: 4px solid #3498db;
+}
+
+.error {
+  color: #e74c3c;
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .headerOne {
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+
+  .courseCard {
+    padding: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .backButton {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .photo {
+    margin: 0.5rem auto 1.5rem;
+  }
+
+  .courseCard p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerOne {
+    font-size: 1.75rem;
+  }
+
+  .courseCard {
+    padding: 1rem;
+  }
+
+  .courseCard h3 {
+    font-size: 1.3rem;
+  }
+}
