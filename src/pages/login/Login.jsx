@@ -15,6 +15,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // Password visibility toggle
   const navigate = useNavigate();
+  const API_BASE_URL = process.env.REACT_API_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ function Login() {
     }
 
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
+      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, { email, password });
 
       if (response.data && response.data.token) {
         const { token, username, userRole, userId } = response.data;

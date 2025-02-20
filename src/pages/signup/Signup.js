@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import icons
 
+
 function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -12,6 +13,7 @@ function Signup() {
   const [loading, setLoading] = useState(false);  // New state to manage loading
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false); // Password visibility toggle
+  const API_BASE_URL = process.env.REACT_API_URL;
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -35,7 +37,7 @@ function Signup() {
     setLoading(true);
 
     try {
-      const response = await axios.post("/api/auth/signup", {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/signup`, {
         name,
         email,
         password,
