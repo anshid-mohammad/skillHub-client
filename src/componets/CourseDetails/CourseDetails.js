@@ -111,6 +111,8 @@ import axios from 'axios';
 import { checkAuthStatus } from "../../redux/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from "../../config/config";
+
 
 function CourseDetails() {
   const [showAll, setShowAll] = useState(false);
@@ -137,7 +139,7 @@ function CourseDetails() {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get('/api/auth/get-course');
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-course`);
         if (Array.isArray(response.data)) {
           setCourseData(response.data);
         } else {

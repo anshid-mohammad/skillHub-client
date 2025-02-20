@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Signup.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import icons
-
+import API_BASE_URL from "../../config/config";
 
 function Signup() {
   const [name, setName] = useState('');
@@ -13,8 +13,10 @@ function Signup() {
   const [loading, setLoading] = useState(false);  // New state to manage loading
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false); // Password visibility toggle
-  const API_BASE_URL = process.env.REACT_API_URL;
+useEffect(()=>{
+  console.log(API_BASE_URL)
 
+},[])
   const handleSignup = async (e) => {
     e.preventDefault();
 
@@ -55,7 +57,7 @@ function Signup() {
     }
   };
   const googleAuth=()=>{
-    window.open("https://zstyleinat.xyz/auth/google/callback","_self");
+    window.open(`${API_BASE_URL}/auth/google/callback`,"_self");
    }
 
   return (

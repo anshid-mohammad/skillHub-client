@@ -8,6 +8,7 @@ import { loginSuccess } from '../../redux/UserSlice';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import icons
+import API_BASE_URL from "../../config/config";
 
 function Login() {
   const dispatch = useDispatch();
@@ -15,8 +16,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // Password visibility toggle
   const navigate = useNavigate();
-  const API_BASE_URL = process.env.REACT_API_URL;
-
+console.log(API_BASE_URL)
   const handleLogin = async (e) => {
     e.preventDefault();
     
@@ -80,7 +80,7 @@ function Login() {
   const googleAuth = (e) => {
     e.preventDefault();
     toast.success('Waiting for authentication...', { position: "top-right" });
-    window.open('https://zstyleinat.xyz/auth/google/callback', '_self');
+    window.open(`${API_BASE_URL}/auth/google/callback`, '_self');
   };
 
   return (
