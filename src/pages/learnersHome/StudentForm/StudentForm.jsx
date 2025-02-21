@@ -157,7 +157,8 @@ function StudentsForm() {
     try {
       const response = await axios.post(`${API_BASE_URL}/api/auth/add-student`, dataToSubmit, {
         headers: { 'Content-Type': 'multipart/form-data' },
-        
+        withCredentials: true,
+        responseType: "json", 
       });
 if(response.data){
  toast.success('Course created successfully!');
