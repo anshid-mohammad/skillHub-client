@@ -8,6 +8,7 @@ import { IoArrowBack } from 'react-icons/io5';
 import { FaUniversity, FaChalkboardTeacher, FaRupeeSign } from 'react-icons/fa';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import { MdOutlineLibraryBooks } from 'react-icons/md';
+import API_BASE_URL from "../../../../config/config";
 
 function ViewApprovedCourses() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -32,7 +33,7 @@ function ViewApprovedCourses() {
     const fetchCourseDetails = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/auth/get-course`);
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-course`);
         setCourseDetails(response.data.filter((course) => course.status === 'approved'));
       } catch (err) {
         setError('Failed to fetch course details. Please try again later.');

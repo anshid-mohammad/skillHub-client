@@ -4,6 +4,7 @@ import styles from './StudentList.module.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatus } from '../../../redux/UserSlice';
+import API_BASE_URL from "../../../config/config";
 
 function StudentList() {
   const [studentDetails, setStudentDetails] = useState(null);
@@ -27,7 +28,7 @@ const dispatch=useDispatch()
     const fetchStudentDetails = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/auth/student-details/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/api/auth/student-details/${id}`);
         setStudentDetails(response.data);
       } catch (err) {
         setError('Failed to fetch student details. Please try again later.');
@@ -44,7 +45,7 @@ const dispatch=useDispatch()
   
     try {
       // First API call: Assign userId to the student (store teacherId)
-      const userResponse = await axios.post(`/api/auth/add-userId/${studentDetails.studentId}`, {
+      const userResponse = await axios.post(`${API_BASE_URL}/api/auth/add-userId/${studentDetails.studentId}`, {
         teacherId: userId, // Store userId as teacherId
       });
   
@@ -54,7 +55,7 @@ const dispatch=useDispatch()
       }
   
       // Second API call: Update student status to "approved"
-      const updateResponse = await axios.put(`/api/auth/update-student/${id}`, { status: 'approved' });
+      const updateResponse = await axios.put(`${API_BASE_URL}/api/auth/update-student/${id}`, { status: 'approved' });
   
       setStudentDetails((prev) => ({ ...prev, status: 'approved' }));
       alert(updateResponse.data.message || 'Student approved successfully!');
@@ -69,7 +70,7 @@ const dispatch=useDispatch()
     if (!window.confirm('Are you sure you want to decline this student?')) return;
 
     try {
-      const response = await axios.delete(`/api/auth/delete-student/${id}`);
+      const response = await axios.delete(`${API_BASE_URL}/api/auth/delete-student/${id}`);
       alert(response.data.message || 'Student declined successfully!');
       navigate('/teachers');
     } catch (err) {
@@ -92,7 +93,7 @@ const dispatch=useDispatch()
       {studentDetails ? (
         <div className={styles.detailsCard}>
           <img
-            src={studentDetails.photo || '/images/default-avatar.png'}
+            src={studentDetails.photo || 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'}
             alt="Student"
             className={styles.photo}
             onClick={() => handleImageClick(studentDetails.photo || '/images/default-avatar.png')}

@@ -5,6 +5,7 @@ import { checkAuthStatus, updateProfile, logout } from '../../../redux/UserSlice
 import axios from 'axios';
 import { FaCamera, FaUser, FaEnvelope, FaMapMarkerAlt, FaPhone, FaInfoCircle, FaVenusMars, FaBirthdayCake, FaUserTie, FaGlobe } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from "../../../config/config";
 
 // Default Profile Image
 const defaultProfileImage = 'https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg';
@@ -33,7 +34,7 @@ useEffect(() => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('/api/auth/get-user');
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-user`);
         const filteredUser = response.data;
         setProfileDetails(filteredUser);
       } catch (err) {

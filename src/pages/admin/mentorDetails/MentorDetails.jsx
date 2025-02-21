@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatus } from '../../../redux/UserSlice';
 import { useNavigate } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
+import API_BASE_URL from "../../../config/config";
+
 
 function MentorDetails() {
   const { loggedIn, user } = useSelector((state) => state.auth);
@@ -28,7 +30,7 @@ function MentorDetails() {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get('/api/auth/get-ventor');  // Corrected endpoint
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-ventor`);  // Corrected endpoint
         setStudents(response.data);
         console.log(response.data)
       } catch (err) {

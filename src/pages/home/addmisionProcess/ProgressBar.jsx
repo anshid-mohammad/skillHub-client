@@ -5,6 +5,7 @@ import { checkAuthStatus } from "../../../redux/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from 'react-icons/io5'; // Import back icon
+import API_BASE_URL from "../../../config/config";
 
 import {
   FaUser,
@@ -42,7 +43,7 @@ function ProgressBar() {
     if (userId) {
       const fetchApplications = async () => {
         try {
-          const response = await axios.get("/api/auth/get-student");
+          const response = await axios.get(`${API_BASE_URL}/api/auth/get-student`);
           setApplication(response.data);
         } catch (error) {
           console.error("Error fetching applications:", error);
@@ -85,8 +86,8 @@ function ProgressBar() {
   detail: item.name,
   icon: (
     <img
-    onClick={() => handleImageClick(item.photo || '/images/default-avatar.png')}
-    src={item.photo || "/default-profile.png"} // Replace with actual photo field or default image
+    onClick={() => handleImageClick(item.photo || 'https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg')}
+    src={item.photo || "https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg"} // Replace with actual photo field or default image
       alt="User Photo"
       className={styles.userPhoto}
     />

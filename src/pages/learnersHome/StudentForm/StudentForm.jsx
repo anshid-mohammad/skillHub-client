@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
+import API_BASE_URL from "../../../config/config";
 
 
 function StudentsForm() {
@@ -154,7 +155,7 @@ function StudentsForm() {
       }
 
     try {
-      const response = await axios.post('/api/auth/add-student', dataToSubmit, {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/add-student`, dataToSubmit, {
         headers: { 'Content-Type': 'multipart/form-data' },
         
       });

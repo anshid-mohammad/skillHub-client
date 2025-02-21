@@ -6,6 +6,7 @@ import styles from './Contact.module.css';
 import { Container } from 'react-bootstrap';
 import axios from 'axios';
 import { IoArrowBack } from 'react-icons/io5'; // Import back icon
+import API_BASE_URL from "../../config/config";
 
 
 function Contacts({ contacts, changeChat }) {
@@ -28,7 +29,7 @@ console.log("contact",contacts)
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const endpoint = userRole === 'mentor' ? '/api/auth/get-student' : '/api/auth/get-course';
+        const endpoint = userRole === 'mentor' ? `${API_BASE_URL}/api/auth/get-student` : `${API_BASE_URL}/api/auth/get-course`;
         const response = await axios.get(endpoint);
         setUsers(response.data || []);
         console.log("users",response.data)

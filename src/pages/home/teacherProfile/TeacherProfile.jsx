@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { checkAuthStatus, logout } from '../../../redux/UserSlice';
 import axios from 'axios';
 import { FaCamera, FaUser, FaEnvelope, FaMapMarkerAlt, FaPhone, FaInfoCircle, FaVenusMars, FaBirthdayCake, FaUserTie, FaGlobe, FaBrain, FaHeart, FaCertificate, FaChalkboardTeacher } from 'react-icons/fa';import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from "../../../config/config";
 
 const defaultProfileImage = 'https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg';
 
@@ -30,7 +31,7 @@ function TeacherProfile() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('/api/auth/get-ventor');
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-ventor`);
         const currentUser = response.data.find((u) => u._id === userId);
         if (currentUser) {
           setProfileDetails(currentUser);

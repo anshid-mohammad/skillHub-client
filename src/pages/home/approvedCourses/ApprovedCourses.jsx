@@ -4,6 +4,7 @@ import styles from "./ApprovedCourses.module.css";
 import { checkAuthStatus } from "../../../redux/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../../../config/config";
 
 function ApprovedCourses() {
   const [application, setApplication] = useState([]);
@@ -25,7 +26,7 @@ function ApprovedCourses() {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get("/api/auth/get-course");
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-course`);
         setApplication(response.data);
         setLoading(false);
       } catch (error) {

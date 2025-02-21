@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./CourseList.module.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import API_BASE_URL from "../../../config/config";
 
 function CourseList() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function CourseList() {
   useEffect(() => {
     const fetchCourseDataById = async () => {
       try {
-        const response = await axios.get(`/api/auth/get-courseid/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-courseid/${id}`);
         setCourseDetails(response.data);
         console.log(response.data)
 
@@ -28,7 +29,7 @@ function CourseList() {
 
   const handleApprove = async () => {
     try {
-      const response = await axios.put(`/api/auth/update-status/${id}`, {
+      const response = await axios.put(`${API_BASE_URL}/api/auth/update-status/${id}`, {
         status: "approved",
       });
 
@@ -49,7 +50,7 @@ function CourseList() {
   const handleDecline= async()=>{
     try{
 
-const response= await axios.delete("/api/auth/delete-course")
+const response= await axios.delete(`${API_BASE_URL}/api/auth/delete-course`)
 alert(response.data.message)
 
 navigate("/admin")

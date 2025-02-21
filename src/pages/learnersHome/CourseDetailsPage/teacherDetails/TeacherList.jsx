@@ -4,6 +4,7 @@ import styles from './TeacherList.module.css';
 import axios from 'axios';
 import { FaUser, FaCalendarAlt, FaVenusMars, FaPhone, FaEnvelope, FaHome, FaGraduationCap, FaUserTie, FaIdCard, FaCommentDots } from 'react-icons/fa';
 import { IoArrowBack } from 'react-icons/io5'; // Import back icon
+import API_BASE_URL from "../../../../config/config";
 
 
 function TeacherList() {
@@ -19,7 +20,7 @@ console.log(id)
     const fetchStudentDetails = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/auth/get-mentorbyid/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-mentorbyid/${id}`);
         setStudentDetails(response.data);
       } catch (err) {
         setError('Failed to fetch student details. Please try again later.');

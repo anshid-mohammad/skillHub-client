@@ -197,6 +197,7 @@ import { loginSuccess } from '../../redux/UserSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import icons
+import API_BASE_URL from "../../config/config";
 
 function LoginTeachers() {
   const dispatch = useDispatch();
@@ -240,7 +241,7 @@ function LoginTeachers() {
     if (!validateForm()) return; // Stop submission if form is invalid
 
     try {
-      const response = await axios.post('/api/auth/mentor-login', {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/mentor-login`, {
         email,
         password,
         phoneNumber

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaBookmark, FaMapMarkerAlt, FaTag } from "react-icons/fa";
+import API_BASE_URL from "../../../config/config";
 
 function Favorite() {
   const navigate = useNavigate();
@@ -20,10 +21,10 @@ function Favorite() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const coursesResponse = await axios.get("/api/auth/get-course");
+        const coursesResponse = await axios.get(`${API_BASE_URL}/api/auth/get-course`);
         setCourses(coursesResponse.data);
 
-        const favoritesResponse = await axios.get("/api/auth/get-all-favorites/");
+        const favoritesResponse = await axios.get(`${API_BASE_URL}/api/auth/get-all-favorites`);
         setFavoriteCourses(favoritesResponse.data || []);
       } catch (error) {
         console.error("Error fetching courses or favorites:", error);
@@ -37,7 +38,7 @@ function Favorite() {
 
   const removeFavorite = async (courseId) => {
     try {
-        await axios.post("/api/auth/remove-favorite", { userId, courseId });
+        await axios.post(`${API_BASE_URL}/api/auth/remove-favorite`, { userId, courseId });
 
         // Remove the course from local state
         setFavoriteCourses((prevFavorites) =>

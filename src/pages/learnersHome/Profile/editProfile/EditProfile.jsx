@@ -6,6 +6,7 @@ import axios from 'axios';
 import { FaCamera } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5'; // Import back icon
+import API_BASE_URL from "../../../../config/config";
 
 
 const defaultProfileImage = 'https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg';
@@ -68,7 +69,7 @@ function EditProfile() {
       setLoading(true);
       setError(null);
 
-      const response = await axios.post('/api/auth/update-profile', { userId, ...profileData });
+      const response = await axios.post(`${API_BASE_URL}/api/auth/update-profile`, { userId, ...profileData });
     //   dispatch(updateProfile(response.data.user));
       navigate("/learners")
     } catch (error) {
@@ -89,7 +90,7 @@ function EditProfile() {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post('/api/auth/add-imageUrl', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+      const response = await axios.post(`${API_BASE_URL}/api/auth/add-imageUrl`, formData, { headers: { 'Content-Type': 'multipart/form-data' } });
       setProfileData((prev) => ({ ...prev, photo: response.data.user.photo || defaultProfileImage }));
     //   dispatch(updateProfile(response.data.user));
     } catch (error) {

@@ -209,7 +209,6 @@ import { useNavigate } from "react-router-dom";
 import { FaCog, FaHome, FaBell } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthStatus, logout } from "../../redux/UserSlice";
-import API_BASE_URL from "../../config/config";
 
 const Header = () => {
   const dispatch = useDispatch();

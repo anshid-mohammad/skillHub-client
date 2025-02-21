@@ -5,6 +5,7 @@ import axios from 'axios';
 import { IoArrowBack } from 'react-icons/io5'; // Import back icon
 import { IoClose } from "react-icons/io5"; // Import close icon
 import { useLocation } from 'react-router-dom';
+import API_BASE_URL from "../../../config/config";
 
 import { 
   FaBook, FaClock, FaLayerGroup, FaChalkboardTeacher, FaMoneyBillWave, 
@@ -40,7 +41,7 @@ const teacherId = queryParams.get("teacherId");
     const fetchStudentDetails = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/auth/get-courseid/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-courseid/${id}`);
         setStudentDetails(response.data);
       } catch (err) {
         setError('Failed to fetch student details. Please try again later.');
@@ -67,7 +68,7 @@ const teacherId = queryParams.get("teacherId");
 
   const handlePayment = async () => {
     try {
-      const { data } = await axios.post("/api/auth/orders", {
+      const { data } = await axios.post(`${API_BASE_URL}/api/auth/orders`, {
         amount: studentDetails.price * 100, // Razorpay requires amount in paise
         currency: "INR",
       });
@@ -99,7 +100,7 @@ const teacherId = queryParams.get("teacherId");
   
           // Send payment details to backend
           try {
-            await axios.post("/api/auth/store-payment", {
+            await axios.post(`${API_BASE_URL}/api/auth/store-payment`, {
               paymentId: response.razorpay_payment_id,
               userId: userId,
               courseId: id,
@@ -147,10 +148,10 @@ const teacherId = queryParams.get("teacherId");
                           <IoArrowBack /> Back
                         </button>
           <img
-            src={studentDetails.photo || '/images/default-avatar.png'}
+            src={studentDetails.photo || 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'}
             alt="Course"
             className={styles.photo}
-            onClick={() => handleImageClick(studentDetails.photo || '/images/default-avatar.png')}
+            onClick={() => handleImageClick(studentDetails.photo || 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg')}
           />
           <div className={styles.detailsGroup}>
             <p><FaBook className={styles.icon} /> <strong>Course Name:</strong> {studentDetails.courseName}</p>

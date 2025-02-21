@@ -7,6 +7,7 @@ import { checkAuthStatus } from "../../redux/UserSlice";
 import { useSelector, useDispatch } from 'react-redux';
 import MentorDetails from './mentorDetails/MentorDetails';
 import UserDetails from './userDetails/UserDetails';
+import API_BASE_URL from "../../config/config";
 
 function AdminHome() {
   const [formData, setFormData] = useState([]);
@@ -33,7 +34,7 @@ function AdminHome() {
   useEffect(() => {
     const fetchFormData = async () => {
       try {
-        const response = await axios.get('/api/auth/get-course', {
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-course`, {
           params: { status: 'pending' }, // Add query parameter
         });
         setFormData(response.data); // Set only the filtered data
@@ -51,7 +52,7 @@ function AdminHome() {
 
   const handleViewClick = async (id) => {
     try {
-      await axios.put(`/api/auth/update-status/${id}`, { status: "under-review" });
+      await axios.put(`${API_BASE_URL}/api/auth/update-status/${id}`, { status: "under-review" });
 
       setFormData((prevApplications) =>
         prevApplications.map((application) =>

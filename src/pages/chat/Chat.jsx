@@ -9,6 +9,7 @@ import Welcome from './welcome/Welcome';
 import styles from './Chat.module.css';
 import ChatContainer from './ChatContainer';
 import { io } from 'socket.io-client';
+import API_BASE_URL from "../../config/config";
 
 function Chat() {
   const socket = useRef();
@@ -19,7 +20,7 @@ function Chat() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const host = 'http://localhost:5000';
+  // const host = 'http://localhost:5000';
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ function Chat() {
 
   useEffect(() => {
     if (user) {
-      socket.current = io(host, { withCredentials: true });
+      socket.current = io(API_BASE_URL, { withCredentials: true });
       socket.current.emit('add-user', userId);
       return () => socket.current && socket.current.disconnect();
     }
@@ -43,7 +44,7 @@ function Chat() {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const endpoint = userRole === 'mentor' ? '/api/auth/get-user' : '/api/auth/get-ventor';
+        const endpoint = userRole === 'mentor' ? `${API_BASE_URL}/api/auth/get-user`: `${API_BASE_URL}/api/auth/get-ventor`;
         const response = await axios.get(endpoint);
         setContacts(response.data);
       } catch (error) {

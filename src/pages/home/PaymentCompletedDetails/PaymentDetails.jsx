@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthStatus } from "../../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../../../config/config";
 
 function PaymentDetails() {
   const { loggedIn, user, loading, userPhoto, username,userId } = useSelector((state) => state.auth);
@@ -28,9 +29,9 @@ function PaymentDetails() {
     const fetchData = async () => {
       try {
         const [coursesRes, paymentsRes, studentsRes] = await Promise.all([
-          axios.get("/api/auth/get-course"),
-          axios.get("/api/auth/get-payments"),
-          axios.get("/api/auth/get-user"),
+          axios.get(`${API_BASE_URL}/api/auth/get-course`),
+          axios.get(`${API_BASE_URL}/api/auth/get-payments`),
+          axios.get(`${API_BASE_URL}/api/auth/get-user`),
         ]);
 
         setCourses(coursesRes.data);

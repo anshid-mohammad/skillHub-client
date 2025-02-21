@@ -5,6 +5,7 @@ import { checkAuthStatus } from "../../../redux/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FaExclamationTriangle } from "react-icons/fa";
+import API_BASE_URL from "../../../config/config";
 
 import {
   FaUser,
@@ -42,7 +43,7 @@ function StudentProgress() {
     if (userId) {
       const fetchApplications = async () => {
         try {
-          const response = await axios.get("/api/auth/get-student");
+          const response = await axios.get(`${API_BASE_URL}/api/auth/get-student`);
           setApplication(response.data);
         } catch (error) {
           console.error("Error fetching applications:", error);
@@ -80,8 +81,8 @@ function StudentProgress() {
   detail: item.name,
   icon: (
     <img
-    onClick={() => handleImageClick(item.photo || '/images/default-avatar.png')}
-    src={item.photo || "/default-profile.png"} // Replace with actual photo field or default image
+    onClick={() => handleImageClick(item.photo || 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg')}
+    src={item.photo || "https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"} // Replace with actual photo field or default image
       alt="User Photo"
       className={styles.userPhoto}
     />

@@ -3,6 +3,7 @@ import styles from "./SignupTeachers.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import icons
+import API_BASE_URL from "../../config/config";
 
 function SignupTeachers() {
   const [name, setName] = useState('');
@@ -36,7 +37,7 @@ function SignupTeachers() {
     setLoading(true);
 
     try {
-      const response = await axios.post("/api/auth/mentor-signup", {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/mentor-signup`, {
         name,
         email,
         phoneNumber,

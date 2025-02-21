@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatus } from '../../../redux/UserSlice';
 import { useNavigate } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5'; // Import back icon
+import API_BASE_URL from "../../../config/config";
 
 
 function StudentDetails() {
@@ -29,7 +30,7 @@ function StudentDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/auth/get-student');
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-student`);
         setStudents(response.data);
       } catch (err) {
         setError('Error fetching student data. Please try again later.');
@@ -88,7 +89,7 @@ function StudentDetails() {
                     <td>
                       <div className={styles.studentName}>
                         <img
-                          src={student.photo || '/default-avatar.png'}
+                          src={student.photo || 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'}
                           alt={`${student.name}'s avatar`}
                           className={styles.avatar}
                           onClick={() => handleImageClick(student.photo || '/default-avatar.png')} // Handle image click

@@ -4,6 +4,7 @@ import styles from './MentorList.module.css';
 import axios from 'axios';
 import { FaUser, FaCalendarAlt, FaVenusMars, FaPhone, FaEnvelope, FaHome, FaGraduationCap, FaUserTie } from 'react-icons/fa';
 import { IoArrowBack } from 'react-icons/io5'; // Import back icon
+import API_BASE_URL from "../../../config/config";
 
 function MentorList() {
   const [studentDetails, setStudentDetails] = useState(null);
@@ -19,7 +20,7 @@ function MentorList() {
     const fetchStudentDetails = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/auth/get-mentorbyid/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-mentorbyid/${id}`);
         setStudentDetails(response.data);
       } catch (err) {
         setError('Failed to fetch student details. Please try again later.');
@@ -31,7 +32,6 @@ function MentorList() {
     fetchStudentDetails();
   }, [id]);
 
-  const handleChat = () => navigate("/chat");
   const handleImageClick = (imageUrl) => setSelectedImage(imageUrl);
   const closeModal = () => setSelectedImage(null);
   const handleBack = () => navigate('/admin');
@@ -40,7 +40,7 @@ function MentorList() {
     const confirmation = window.confirm('Are you sure you want to delete this mentor?');
     if (confirmation) {
       try {
-        await axios.delete(`/api/auth/delete-mentor/${id}`);
+        await axios.delete(`${API_BASE_URL}/api/auth/delete-mentor/${id}`);
         navigate('/learners');  // Redirect to the learners list after deletion
       } catch (err) {
         setError('Error deleting mentor. Please try again later.');
@@ -54,7 +54,7 @@ function MentorList() {
   const handleDecline= async()=>{
     try{
 
-const response= await axios.delete("/api/auth/delete-mentor")
+const response= await axios.delete(`${API_BASE_URL}/api/auth/delete-mentor`)
 alert(response.data.message)
 
 navigate("/admin")

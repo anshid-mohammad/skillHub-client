@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { IoArrowBack } from 'react-icons/io5'; // Import back icon
+import API_BASE_URL from "../../config/config";
 
 export default function ChatContainer({ currentChat, socket,onBackClick }) {
   const [messages, setMessages] = useState([]); // Messages state
@@ -19,7 +20,7 @@ export default function ChatContainer({ currentChat, socket,onBackClick }) {
     const fetchMessages = async () => {
       if (currentChat) {
         try {
-          const { data } = await axios.post('/api/auth/get-message', {
+          const { data } = await axios.post(`${API_BASE_URL}/api/auth/get-message`, {
             from: userId,
             to: currentChat._id,
           });
@@ -46,7 +47,7 @@ export default function ChatContainer({ currentChat, socket,onBackClick }) {
     setMessages((prev) => [...prev, newMessage]); // Add message to local state
 
     try {
-      const { data } = await axios.post('/api/auth/add-message', {
+      const { data } = await axios.post(`${API_BASE_URL}/api/auth/add-message`, {
         from: userId,
         to: currentChat._id,
         message: msg,

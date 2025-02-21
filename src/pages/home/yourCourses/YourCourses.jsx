@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthStatus } from "../../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../../../config/config";
 
 function YourCourses() {
   const { loggedIn, user, loading, userPhoto, username, userId } = useSelector((state) => state.auth);
@@ -38,7 +39,7 @@ function YourCourses() {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get("/api/auth/get-course");
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-course`);
         setCourses(response.data);
         updateStats(response.data); // Update stats with fetched courses
         checkIfTeacher(response.data); // Check if the user is a teacher

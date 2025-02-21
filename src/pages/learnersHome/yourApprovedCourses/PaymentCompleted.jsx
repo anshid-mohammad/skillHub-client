@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthStatus } from "../../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../../../config/config";
 
 function PaymentCompleted() {
   const { loggedIn, user, loading, userPhoto, username, userId } = useSelector((state) => state.auth);
@@ -27,7 +28,7 @@ function PaymentCompleted() {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get("/api/auth/get-course");
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-course`);
         setCourses(response.data);
       } catch (error) {
         console.error("Error fetching courses:", error);
@@ -39,7 +40,7 @@ function PaymentCompleted() {
   useEffect(() => {
     const fetchPayments = async () => {
       try {
-        const response = await axios.get("/api/auth/get-payments");
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-payments`);
         setPayments(response.data);
       } catch (error) {
         console.error("Error fetching payments:", error);
@@ -51,7 +52,7 @@ function PaymentCompleted() {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get("/api/auth/get-student");
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-student`);
         setStudents(response.data);
       } catch (error) {
         console.error("Error fetching students:", error);

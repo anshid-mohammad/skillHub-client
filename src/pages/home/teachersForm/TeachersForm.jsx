@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { checkAuthStatus } from "../../../redux/UserSlice";
 import { useSelector, useDispatch } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
+import API_BASE_URL from "../../../config/config";
 
 function TeachersForm() {
   const dispatch = useDispatch();
@@ -99,7 +100,7 @@ function TeachersForm() {
     try {
       setIsSubmitting(true);
 
-      const response = await axios.post('/api/auth/add-course', formData, {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/add-course`, formData, {
         headers: { 'Content-Type': 'multipart/form-data'},
       });
       toast.success('Course created successfully!');

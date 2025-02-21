@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaBook, FaTags, FaClock, FaUser, FaCertificate, FaMoneyBillWave, FaPhone } from "react-icons/fa";
+import API_BASE_URL from "../../../config/config";
 
 function CourseDetailsPage() {
   const [activeTab, setActiveTab] = useState("overview");
@@ -32,7 +33,7 @@ function CourseDetailsPage() {
   useEffect(() => {
     const fetchCourseDataById = async () => {
       try {
-        const response = await axios.get(`/api/auth/get-courseid/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-courseid/${id}`);
         setCourseData(response.data);
       } catch (error) {
         console.error("Error fetching course data:", error);

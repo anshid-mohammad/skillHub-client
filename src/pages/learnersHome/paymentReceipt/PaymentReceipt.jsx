@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatus } from '../../../redux/UserSlice';
 import { IoArrowBack } from 'react-icons/io5'; // Import back icon
+import API_BASE_URL from "../../../config/config";
 
 
 function PaymentReceipt() {
@@ -30,7 +31,7 @@ console.log(id)
     const fetchCourseDetails = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/auth/get-courseid/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-courseid/${id}`);
         setCourseDetails(response.data);
         console.log(response.data)
       } catch (err) {
@@ -59,7 +60,7 @@ console.log(id)
                   <IoArrowBack /> Back
                 </button>  
           <img
-            src={courseDetails.photo || '/images/default-course.png'}
+            src={courseDetails.photo || 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'}
             alt="Course"
             className={styles.photo}
           />
