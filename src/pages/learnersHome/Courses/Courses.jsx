@@ -29,7 +29,7 @@ function Courses() {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/api/auth/get-course'`);
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-course`);
         setCourseData(response.data);
       } catch (error) {
         console.error('Error fetching course data:', error);
