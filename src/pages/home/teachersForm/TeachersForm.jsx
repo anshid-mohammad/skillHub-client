@@ -102,6 +102,7 @@ function TeachersForm() {
 
       const response = await axios.post(`${API_BASE_URL}/api/auth/add-course`, formData, {
         headers: { 'Content-Type': 'multipart/form-data'},
+        withCredentials: true,
       });
       toast.success('Course created successfully!');
       setTimeout(() => navigate('/teachers'), 3000);
