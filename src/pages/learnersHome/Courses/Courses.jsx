@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { checkAuthStatus } from '../../../redux/UserSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaRegHeart, FaHeart, FaMapMarkerAlt, FaTag } from 'react-icons/fa'; 
+import API_BASE_URL from "../../../config/config";
 
 function Courses() {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function Courses() {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get('/api/auth/get-course');
+        const response = await axios.get(`${API_BASE_URL}/api/auth/get-course'`);
         setCourseData(response.data);
       } catch (error) {
         console.error('Error fetching course data:', error);
@@ -41,7 +42,7 @@ function Courses() {
       const discountedPrice = calculateDiscountedPrice(course.price, course.discount);
       console.log(discountedPrice);
   
-      const response = await axios.post('/api/auth/update-price', {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/update-price`, {
         courseId: course._id,
         price: discountedPrice, // Send the price correctly
       });
@@ -58,7 +59,7 @@ function Courses() {
   
   const fetchFavorites = async () => {
     try {
-      const response = await axios.get('/api/auth/get-all-favorites'); 
+      const response = await axios.get(`${API_BASE_URL}/api/auth/get-all-favorites`); 
       setAllFavorites(response.data || []);
     } catch (error) {
       console.error('Error fetching favorites:', error);
@@ -80,10 +81,10 @@ function Courses() {
   const toggleFavorite = async (courseId,userId) => {
     try {
       if (favorites.includes(courseId)) {
-        await axios.post(`/api/auth/remove-favorite`, { courseId,userId });
+        await axios.post(`${API_BASE_URL}/api/auth/remove-favorite`, { courseId,userId });
         setFavorites((prevFavorites) => prevFavorites.filter((id) => id !== courseId));
       } else {
-        await axios.post(`/api/auth/add-favorite`, { courseId ,userId});
+        await axios.post(`${API_BASE_URL}/api/auth/add-favorite`, { courseId ,userId});
         setFavorites((prevFavorites) => [...prevFavorites, courseId]);
       }
     } catch (error) {
