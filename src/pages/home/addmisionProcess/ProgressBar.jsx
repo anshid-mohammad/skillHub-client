@@ -55,10 +55,14 @@ function ProgressBar() {
     }
   }, [userId]);
 
-  const handleChatButton = () => {
-    navigate("/chat");
+  const handleChatButton = async (studentId,teacherId) => {
+    try {
+      await axios.post("/api/auth/add-studentId", { studentId,teacherId});
+      navigate("/chat");
+    } catch (error) {
+      console.error("Error storing student ID in mentor DB:", error);
+    }
   };
-
   const handleViewMore = (id) => {
     navigate(`/view-more/${id}`);
   };
@@ -129,7 +133,7 @@ function ProgressBar() {
                   </div>
                   <div className={styles.buttonContainer}>
                     <p className={styles.buttonDescription}>Chat with the student</p>
-                    <button onClick={handleChatButton} className={styles.chatButton}>
+                    <button onClick={()=>handleChatButton(item.studentId,userId)} className={styles.chatButton}>
                       <FaCommentDots /> Chat
                     </button>
                   </div>
