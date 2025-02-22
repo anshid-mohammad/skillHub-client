@@ -56,9 +56,12 @@ useEffect(()=>{
       setLoading(false);  // Reset loading state
     }
   };
-  const googleAuth=()=>{
-    window.open(`${API_BASE_URL}/auth/google/callback`,"_self");
-   }
+  // const googleAuth=()=>{
+  //   window.open(`${API_BASE_URL}/auth/google/callback`,"_self");
+  //  }
+  const googleAuth = () => {
+    window.open(`${API_BASE_URL}/auth/google`, "_self"); // ✅ Use /auth/google instead of /auth/google/callback
+};
 
   return (
     <div className={styles.container}>
