@@ -56,6 +56,7 @@ function ProgressBar() {
   }, [userId]);
 
   const handleChatButton = async (studentId,teacherId) => {
+    console.log("id :id ",studentId,teacherId)
     try {
       await axios.post("/api/auth/add-studentId", { studentId,teacherId});
       navigate("/chat");

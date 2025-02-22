@@ -113,7 +113,7 @@
     font-weight: 600;
     color: #fff;
     cursor: pointer;
-    background: linear-gradient(90deg, #0056b3, #003f7f);
+    background: linear-gradient(135deg, rgba(8, 116, 90, 1), #15980e);
 
     /* box-shadow: 0px 2px 5px #0056b3; */
     transition: all 0.3s ease-in-out;
