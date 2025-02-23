@@ -58,7 +58,7 @@ function ProgressBar() {
   const handleChatButton = async (studentId,teacherId) => {
     console.log("id :id ",studentId,teacherId)
     try {
-      await axios.post("/api/auth/add-studentId", { studentId,teacherId});
+      await axios.post(`${API_BASE_URL}/api/auth/add-studentId`, { studentId,teacherId});
       navigate("/chat");
     } catch (error) {
       console.error("Error storing student ID in mentor DB:", error);
