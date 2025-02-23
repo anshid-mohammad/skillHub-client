@@ -60,7 +60,7 @@ useEffect(()=>{
   //   window.open(`${API_BASE_URL}/auth/google/callback`,"_self");
   //  }
   const googleAuth = () => {
-    window.open(`${API_BASE_URL}/auth/google`, "_self"); // ✅ Use /auth/google instead of /auth/google/callback
+    window.open(`${API_BASE_URL}/auth/google-auth`, '_self'); // Corrected auth URL
 };
 
   return (
