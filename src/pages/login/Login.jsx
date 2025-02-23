@@ -80,7 +80,7 @@ console.log(API_BASE_URL)
   const googleAuth = (e) => {
     e.preventDefault();
     toast.success('Waiting for authentication...', { position: "top-right" });
-    window.open(`${API_BASE_URL}/api/auth/google-auth`, '_self'); // Corrected auth URL
+    window.open(`${API_BASE_URL}/auth/google-auth`, '_self'); // Corrected auth URL
   };
 
   return (
