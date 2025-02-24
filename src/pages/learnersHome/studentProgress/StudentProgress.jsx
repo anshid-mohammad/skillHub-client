@@ -58,7 +58,7 @@ function StudentProgress() {
   }, [userId]);
 
   useEffect(() => {
-    axios.get("/api/auth/get-payments")
+    axios.get(`${API_BASE_URL}/api/auth/get-payments`)
       .then(response => setPayments(response.data))
       .catch(error => console.error("Error fetching payments:", error));
   }, []);
