@@ -79,7 +79,11 @@ function ViewMore() {
           </div>
           <div className={styles.actionButtons}>
         <p>You can Chat with Student, Right Now</p>
+        {studentDetails.status==="approved" ?(
         <button onClick={handleChat} className={styles.chatButton}><FaCommentDots /> Chat</button>
+
+        ):null
+        }
       </div>
         </div>
       ) : (

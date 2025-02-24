@@ -73,6 +73,9 @@ function PaymentCompleted() {
   const handleReceiptClick = (id) => {
     navigate(`/payment-receipt/${id}`);
   };
+  const handleGoToPayment = (courseId,teacherId) => {
+    navigate(`/view-payment/${courseId}?teacherId=${teacherId}`);
+  };
 
   return (
     <div className={styles.container}>
@@ -146,6 +149,9 @@ function PaymentCompleted() {
                 <div className={styles.paymentStatusPending}>
                   <CreditCard className={styles.pendingIcon} />
                   <span>Payment Pending</span>
+                  <button className={styles.paymentButton} onClick={() => handleGoToPayment(course._id,userId)}>
+                    GO TO PAYMENT
+                  </button>
                 </div>
               )}
             </div>

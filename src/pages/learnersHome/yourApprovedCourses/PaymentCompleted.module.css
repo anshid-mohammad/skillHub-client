@@ -12,7 +12,34 @@
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
 }
-
+.paymentButton {
+    margin-left: auto;
+    background: white;
+    color:  #eab308;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .paymentButton:hover {
+    background-color:  white; /* Darker Orange */
+    transform: scale(1.05);
+  }
+  
+  .paymentButton:active {
+    background-color: #eab308; /* Even Darker Orange */
+    transform: scale(0.98);
+  }
 /* Scrollbar */
 .container::-webkit-scrollbar {
     width: 8px;

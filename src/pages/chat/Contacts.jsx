@@ -99,7 +99,9 @@ console.log("contact",contacts)
             contacts.map((contact, index) => {
               const isApprovedUser = users.some(
                 (user) =>
-                  (user.studentId === contact._id || user.teacherId === contact._id) && (userId===contact.teacherId ||userId===contact.studentId)&&
+                  (user.studentId === contact._id || user.teacherId === contact._id) &&
+                (userId === contact.teacherId || contact.studentIds?.includes(userId) )
+                &&
                   user.status === "approved"
               );
 

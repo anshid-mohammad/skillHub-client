@@ -6,7 +6,8 @@ import axios from 'axios';
 import { FaCamera, FaUser, FaEnvelope, FaMapMarkerAlt, FaPhone, FaInfoCircle, FaVenusMars, FaBirthdayCake, FaUserTie, FaGlobe } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import API_BASE_URL from "../../../config/config";
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // Default Profile Image
 const defaultProfileImage = 'https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg';
 
@@ -59,8 +60,16 @@ const handleImageClick = (imageUrl) => {
 const closeModal = () => {
   setSelectedImage(null); // Close modal by clearing selected image
 };
-const handleGoEdit=()=>{
-  alert("Go to the edit section")
+const handleGoEdit = () => {
+  toast.info('Go to the edit section', {
+    position: 'top-center',
+    autoClose: 2000, // Closes after 2 seconds
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    theme: 'colored',
+  });
 }
   return (
     <div className={styles.container}>
@@ -119,7 +128,8 @@ const handleGoEdit=()=>{
         {error && <p className={styles.error}>{error}</p>}
         
       </div>
-      
+      <ToastContainer />
+
     </div>
     
   );

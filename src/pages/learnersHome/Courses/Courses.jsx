@@ -10,11 +10,10 @@ import API_BASE_URL from "../../../config/config";
 function Courses() {
   const dispatch = useDispatch();
   const [courseData, setCourseData] = useState([]);
-  const [allfavorites, setAllFavorites] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState([]);  // Stores only logged-in user's favorites
 
   const navigate = useNavigate();
-  const { loggedIn, user, loading,userId } = useSelector((state) => state.auth);
+  const { loggedIn, user, loading, userId } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!loading && (!loggedIn || !user)) {
@@ -37,6 +36,7 @@ function Courses() {
     };
     fetchCourse();
   }, []);
+
   const handleClickData = async (course) => {
     try {
       const discountedPrice = calculateDiscountedPrice(course.price, course.discount);
@@ -44,7 +44,7 @@ function Courses() {
   
       const response = await axios.post(`${API_BASE_URL}/api/auth/update-price`, {
         courseId: course._id,
-        price: discountedPrice, // Send the price correctly
+        price: discountedPrice,
       });
   
       if (response.data.success) {
@@ -56,11 +56,13 @@ function Courses() {
       console.error('Error enrolling in course:', error);
     }
   };
-  
+
+  // Fetch only logged-in user's favorites
   const fetchFavorites = async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/api/auth/get-all-favorites`); 
-      setAllFavorites(response.data || []);
+      const userFavorites = response.data.filter((fav) => fav.userId === userId); // Filter only for logged-in user
+      setFavorites(userFavorites.map((fav) => fav.courseId));
     } catch (error) {
       console.error('Error fetching favorites:', error);
     }
@@ -72,19 +74,13 @@ function Courses() {
     }
   }, [loggedIn]);
 
-  useEffect(() => {
-    if (allfavorites.length > 0) {
-      setFavorites(allfavorites.map((fav) => fav.courseId));
-    }
-  }, [allfavorites]);
-
-  const toggleFavorite = async (courseId,userId) => {
+  const toggleFavorite = async (courseId) => {
     try {
       if (favorites.includes(courseId)) {
-        await axios.post(`${API_BASE_URL}/api/auth/remove-favorite`, { courseId,userId });
+        await axios.post(`${API_BASE_URL}/api/auth/remove-favorite`, { courseId, userId });
         setFavorites((prevFavorites) => prevFavorites.filter((id) => id !== courseId));
       } else {
-        await axios.post(`${API_BASE_URL}/api/auth/add-favorite`, { courseId ,userId});
+        await axios.post(`${API_BASE_URL}/api/auth/add-favorite`, { courseId, userId });
         setFavorites((prevFavorites) => [...prevFavorites, courseId]);
       }
     } catch (error) {
@@ -135,22 +131,20 @@ function Courses() {
                 )}
 
                 {/* Favorite Button */}
-                {favorites.includes(course._id) ? (
-                  <button className={styles.favoriteButton}>
-                    <FaHeart style={{ color: 'red', fontSize: '1.5rem', }} /> 
-                  </button>
-                ) : (
-                  <button
-                    className={styles.favoriteButton}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleFavorite(course._id,userId);
-                    }}
-                    style={{ fontSize: '1.5rem' }}
-                  >
+                <button
+                  className={styles.favoriteButton}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleFavorite(course._id);
+                  }}
+                  style={{ fontSize: '1.5rem' }}
+                >
+                  {favorites.includes(course._id) ? (
+                    <FaHeart style={{ color: 'red' }} />
+                  ) : (
                     <FaRegHeart />
-                  </button>
-                )}
+                  )}
+                </button>
 
                 <button
                   className={styles.enrollButton}
