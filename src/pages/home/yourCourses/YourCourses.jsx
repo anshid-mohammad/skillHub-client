@@ -13,15 +13,12 @@ function YourCourses() {
   const dispatch = useDispatch();
   
   const [courses, setCourses] = useState([]);
-  
   const [stats, setStats] = useState({
     approved: 0,
     underReview: 0,
     inProgress: 0,
     rejected: 0
   });
-
-  const [isTeacher, setIsTeacher] = useState(false); // Track if the user is a teacher
 
   // Check authentication status on mount
   useEffect(() => {
@@ -35,23 +32,29 @@ function YourCourses() {
     }
   }, [loggedIn, user, loading, navigate]);
 
-  // Fetch course data
+  // Fetch only the courses assigned to the logged-in teacher
   useEffect(() => {
     const fetchCourse = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/api/auth/get-course`);
-        setCourses(response.data);
-        updateStats(response.data); // Update stats with fetched courses
-        checkIfTeacher(response.data); // Check if the user is a teacher
+        
+        // Filter courses that belong to the logged-in teacher
+        const teacherCourses = response.data.filter(course => course.teacherId === userId);
+        
+        setCourses(teacherCourses);
+        updateStats(teacherCourses); // Update stats with filtered courses
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
     };
-    fetchCourse();
-  }, []);
-const handleapprovedCourse=(id)=>{
-  navigate(`/view-approved-course`)
-}
+
+    if (userId) fetchCourse(); // Ensure userId is available before fetching
+  }, [userId]);
+
+  const handleApprovedCourse = () => {
+    navigate(`/view-approved-course`);
+  };
+
   // Function to update the course stats
   const updateStats = (courses) => {
     let approvedCount = 0;
@@ -86,12 +89,6 @@ const handleapprovedCourse=(id)=>{
     });
   };
 
-  // Function to check if the user is a teacher
-  const checkIfTeacher = (courses) => {
-    const isTeacherOfAnyCourse = courses.some(course => course.teacherId === userId);
-    setIsTeacher(isTeacherOfAnyCourse);
-  };
-
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -113,10 +110,9 @@ const handleapprovedCourse=(id)=>{
       </header>
 
       <div className={styles.statsSection}>
-        {isTeacher && (
+        {courses.length > 0 ? (
           <>
-          
-            <div onClick={handleapprovedCourse} className={`${styles.statItem} ${styles.approved}`}>
+            <div onClick={handleApprovedCourse} className={`${styles.statItem} ${styles.approved}`}>
               <CheckCircle className={styles.icon} />
               <span className={styles.statNumber}>{stats.approved}</span>
               <span className={styles.statLabel}>Approved</span>
@@ -137,6 +133,8 @@ const handleapprovedCourse=(id)=>{
               <span className={styles.statLabel}>Rejected</span>
             </div>
           </>
+        ) : (
+          <p className={styles.noCourses}>No courses found.</p>
         )}
       </div>
     </div>

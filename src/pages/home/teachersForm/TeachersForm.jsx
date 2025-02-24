@@ -281,7 +281,7 @@ function TeachersForm() {
         </div>
 
         <div className={styles.formGroup}>
-          <label>Duration</label>
+          <label>frequency</label>
           <input
             type="text"
             name="frequency"

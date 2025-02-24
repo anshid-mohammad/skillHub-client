@@ -5,7 +5,8 @@ import { checkAuthStatus, logout } from '../../../redux/UserSlice';
 import axios from 'axios';
 import { FaCamera, FaUser, FaEnvelope, FaMapMarkerAlt, FaPhone, FaInfoCircle, FaVenusMars, FaBirthdayCake, FaUserTie, FaGlobe, FaBrain, FaHeart, FaCertificate, FaChalkboardTeacher } from 'react-icons/fa';import { useNavigate } from 'react-router-dom';
 import API_BASE_URL from "../../../config/config";
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const defaultProfileImage = 'https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg';
 
 function TeacherProfile() {
@@ -61,9 +62,17 @@ function TeacherProfile() {
   const closeModal = () => {
     setSelectedImage(null);
   };
-const handleGoEdit=()=>{
-  alert("Go to the edit section")
-}
+  const handleGoEdit = () => {
+    toast.info('Go to the edit section', {
+      position: 'top-center',
+      autoClose: 2000, // Closes after 2 seconds
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: 'colored',
+    });
+  };
   return (
     <div className={styles.container}>
       <div className={styles.profileSection}>
@@ -117,6 +126,8 @@ const handleGoEdit=()=>{
           </div>
         </div>
       )}
+            <ToastContainer />
+
     </div>
   );
 }

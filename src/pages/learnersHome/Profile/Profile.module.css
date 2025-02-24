@@ -11,6 +11,8 @@
 
 /* Profile card with shadow & rounded corners */
 .profileSection {
+  justify-content: center;
+
     margin-bottom: 20px;
     height: auto;
     width: 78vw;
@@ -246,8 +248,10 @@
 /* Responsive Design */
 @media (max-width: 900px) {
     .profileSection {
+      justify-content: center;
+
         width: 200vw;
-        margin-top: 9rem;
+        /* margin-top: 9rem; */
     }
     
     .detailsSection {

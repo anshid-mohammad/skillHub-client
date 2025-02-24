@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from "react";
 import styles from "./PaymentDetails.module.css";
 import { CheckCircle, CreditCard, Calendar, MapPin, FileText, Book } from "lucide-react";
@@ -8,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../../../config/config";
 
 function PaymentDetails() {
-  const { loggedIn, user, loading, userPhoto, username,userId } = useSelector((state) => state.auth);
+  const { loggedIn, user, loading, userPhoto, username, userId } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [students, setStudents] = useState([]);
@@ -67,23 +69,19 @@ function PaymentDetails() {
 
       <div className={styles.courseList}>
         {students.map((student) => {
-          const studentInCourse = payments.find((payment) => student._id === payment.userId && payment.teacherId===userId);
+          const studentInCourse = payments.find((payment) => student._id === payment.userId && payment.teacherId === userId);
           const paymentForCourse = studentInCourse || {};
-          const course = courses.find((c) => c._id === paymentForCourse.courseId );
+          const course = courses.find((c) => c._id === paymentForCourse.courseId);
 
-          return (
-            <div key={student._id} className={styles.courseCard}>
-              <h3>{student.Name}</h3>
+          if (studentInCourse?.status === "success") {
+            return (
+              <div key={student._id} className={styles.courseCard}>
+                <h3>{student.Name}</h3>
 
-              <div className={styles.paymentStatus}>
-                {studentInCourse?.status === "success" ? (
-                  <>
-                    <CheckCircle className={styles.successIcon} />
-                    <span>Payment Completed</span>
-                  </>
-                ) : (
-                <p>No payments Available for you</p>
-                )}
+                <div className={styles.paymentStatus}>
+                  <CheckCircle className={styles.successIcon} />
+                  <span>Payment Completed</span>
+                </div>
 
                 {course && (
                   <div className={styles.paymentDetails}>
@@ -97,7 +95,7 @@ function PaymentDetails() {
                     </p>
                     <p className={styles.paymentInfo}>
                       <MapPin className={styles.icon} />
-                      <strong> Location:</strong> {studentInCourse?.address || "Not Provided"}
+                      <strong> Location:</strong> {studentInCourse?.institutionAddress || "Not Provided"}
                     </p>
                     <p className={styles.paymentInfo}>
                       <FileText className={styles.icon} />
@@ -114,12 +112,23 @@ function PaymentDetails() {
                   </div>
                 )}
               </div>
-            </div>
-          );
+            );
+          }
+          return null;
         })}
+
+        {/* Show this message if no payments exist */}
+        {students.every((student) => !payments.find((payment) => student._id === payment.userId && payment.teacherId === userId)) && (
+          <p className={styles.noPayments}>No payments available for you</p>
+        )}
       </div>
     </div>
   );
 }
 
 export default PaymentDetails;
+
+
+
+
+

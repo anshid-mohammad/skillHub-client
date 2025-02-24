@@ -16,12 +16,14 @@ import {
   FaPhone,
   FaCreditCard,
   FaCommentDots,
+  FaCheckCircle,
 } from "react-icons/fa";
 import { MdCelebration } from "react-icons/md";
 
 function StudentProgress() {
     const [selectedImage, setSelectedImage] = useState(null);
-  
+    const [payments, setPayments] = useState([]);
+
   const [application, setApplication] = useState([]);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -55,6 +57,11 @@ function StudentProgress() {
     }
   }, [userId]);
 
+  useEffect(() => {
+    axios.get("/api/auth/get-payments")
+      .then(response => setPayments(response.data))
+      .catch(error => console.error("Error fetching payments:", error));
+  }, []);
   const handleChatButton = () => {
     navigate("/chat");
   };
@@ -130,12 +137,17 @@ function StudentProgress() {
                       <FaCommentDots /> Chat
                     </button>
                   </div>
-                  <div className={styles.buttonContainer}>
-                    <p className={styles.buttonDescription}>Make a payment</p>
-                    <button onClick={() => handlePayment(item.courseId,item.teacherId)} className={styles.paymentButton}>
-                      <FaCreditCard /> Payment
-                    </button>
-                  </div>
+                  {payments.some(payment => payment.userId === userId) ? (
+                      <p className={styles.paymentCompleted}>
+      <FaCheckCircle className={styles.paymentCompletedIcon} /> Payment Completed
+    </p>                    ) : (
+                      <div className={styles.buttonContainer}>
+                        <p className={styles.buttonDescription}>Make  payment</p>
+                        <button onClick={() => handlePayment(item.courseId, item.teacherId)} className={styles.paymentButton}>
+                          <FaCreditCard /> Payment
+                        </button>
+                      </div>
+                    )}
                     </>
                   ):(
                     <p className={styles.infoMessage}><FaExclamationTriangle/>

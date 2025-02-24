@@ -10,12 +10,14 @@ import { AiOutlineCalendar } from 'react-icons/ai';
 import { MdOutlineLibraryBooks } from 'react-icons/md';
 import API_BASE_URL from "../../../../config/config";
 
+
+
 function ViewApprovedCourses() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [courseDetails, setCourseDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const { loggedIn, user } = useSelector((state) => state.auth);
+  const { loggedIn, user,userId } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,9 +34,17 @@ function ViewApprovedCourses() {
   useEffect(() => {
     const fetchCourseDetails = async () => {
       try {
+        if (!user) return;
         setLoading(true);
+
         const response = await axios.get(`${API_BASE_URL}/api/auth/get-course`);
-        setCourseDetails(response.data.filter((course) => course.status === 'approved'));
+
+        // Filter only approved courses that belong to the logged-in teacher
+        const teacherApprovedCourses = response.data.filter(
+          (course) => course.status === 'approved' && course.teacherId === userId
+        );
+
+        setCourseDetails(teacherApprovedCourses);
       } catch (err) {
         setError('Failed to fetch course details. Please try again later.');
       } finally {
@@ -43,7 +53,7 @@ function ViewApprovedCourses() {
     };
 
     fetchCourseDetails();
-  }, []);
+  }, [user]); // Depend on user to re-fetch when authentication updates
 
   const handleBack = () => navigate('/teachers');
   const handleImageClick = (imageUrl) => setSelectedImage(imageUrl);

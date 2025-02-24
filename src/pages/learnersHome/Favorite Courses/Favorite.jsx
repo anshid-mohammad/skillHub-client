@@ -44,6 +44,7 @@ function Favorite() {
         setFavoriteCourses((prevFavorites) =>
             prevFavorites.filter((fav) => fav.courseId !== courseId)
         );
+        navigate("/learners")
 
     } catch (error) {
         console.error("Error removing favorite:", error);

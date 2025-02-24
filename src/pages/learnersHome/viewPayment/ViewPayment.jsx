@@ -108,6 +108,8 @@ const teacherId = queryParams.get("teacherId");
             });
   
             setPaymentSuccess(true); // Show success popup
+            navigate("/learners")
+
           } catch (error) {
             console.error("Error storing payment:", error);
             alert("Payment recorded failed, please contact support.");

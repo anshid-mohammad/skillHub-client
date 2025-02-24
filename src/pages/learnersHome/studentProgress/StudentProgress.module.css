@@ -20,7 +20,21 @@
   object-fit: cover;
   border: 2px solid #ccc;
 }
+.paymentCompleted {
+  color: green;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+}
+
+.paymentCompletedIcon {
+  margin-right: 5px;
+  font-size: 18px;
+}
 .scrollableContainer::-webkit-scrollbar {
   width: 4px;
 }

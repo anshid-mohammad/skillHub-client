@@ -5,7 +5,8 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatus } from '../../../redux/UserSlice';
 import API_BASE_URL from "../../../config/config";
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function StudentList() {
   const [studentDetails, setStudentDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -41,7 +42,7 @@ const dispatch=useDispatch()
   }, [id]);
 
   const handleApprove = async () => {
-    if (!window.confirm('Are you sure you want to approve this student?')) return;
+    // if (!window.confirm('Are you sure you want to approve this student?')) return;
   
     try {
       // First API call: Assign userId to the student (store teacherId)
@@ -59,6 +60,17 @@ const dispatch=useDispatch()
   
       setStudentDetails((prev) => ({ ...prev, status: 'approved' }));
       alert(updateResponse.data.message || 'Student approved successfully!');
+
+      toast.info('Go to the edit section', {
+        position: 'top-center',
+        autoClose: 2000, // Closes after 2 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'colored',
+      });
+    
       navigate('/teachers');
     } catch (error) {
       console.error('Error approving student:', error);
@@ -134,6 +146,8 @@ const dispatch=useDispatch()
         <button onClick={handleApprove} className={styles.approveButton}>Approve</button>
         <button onClick={handleDecline} className={styles.declineButton}>Decline</button>
       </div>
+      <ToastContainer />
+
     </div>
   );
 }
