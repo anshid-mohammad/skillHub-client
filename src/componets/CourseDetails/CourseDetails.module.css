@@ -14,7 +14,13 @@
   justify-content: center;
   padding: 20px;
 }
-
+.locationIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+  color:  rgba(8, 116, 90, 1); /* Customize icon color */
+}
 /* Course card styles */
 .coursecard {
   background-color: #fff;

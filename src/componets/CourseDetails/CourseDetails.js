@@ -10,6 +10,7 @@ import { checkAuthStatus } from "../../redux/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import API_BASE_URL from "../../config/config";
+import { MapPin } from "lucide-react"; // Importing Location Icon
 
 
 function CourseDetails() {
@@ -88,8 +89,9 @@ function CourseDetails() {
               </div>
               <div className={styles.cardbody}>
                 <h5 className={styles.coursename}>{course.courseName}</h5>
-                <p className={styles.coursedescription}>{course.description}</p>
-              </div>
+                <p className={styles.coursedescription}>
+                  <MapPin className={styles.locationIcon} /> {course.institutionAddress}
+                </p>              </div>
             </div>
           ))
         ) : (
