@@ -117,7 +117,7 @@ function Courses() {
 
                 {/* Price and Discount Section */}
                 <div className={styles.pricing}>
-                  {course.discount && <span className={styles.originalPrice}>${course.price}</span>}
+                  {course.discount && <span className={styles.originalPrice}>₹{course.price}</span>}
                   <span className={styles.discountedPrice}>
                     ${calculateDiscountedPrice(course.price, course.discount)}
                   </span>
