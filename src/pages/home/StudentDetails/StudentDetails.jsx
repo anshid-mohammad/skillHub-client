@@ -41,10 +41,31 @@ function StudentDetails() {
     fetchData();
   }, []);
 
-  const handleViewClick = (id) => {
-    navigate(`/student-list/${id}`);
+  const handleViewClick = async (id) => {
+    try {
+      // console.log(`Updating student ${id} to 'under-review'...`);
+  
+      const response = await axios.put(`${API_BASE_URL}/api/auth/review-update/${id}`, {
+        status: "under-review",
+      });
+  
+      console.log("API Response:", response.data);
+  
+      if (response.data.success) {  
+        setStudents((prevStudents) =>
+          prevStudents.map((student) =>
+            student._id === id ? { ...student, status: "under-review" } : student
+          )
+        );
+        console.log("Updated Students List:", students);
+        navigate(`/student-list/${id}`);
+      } else {
+        console.error("Failed to update student status:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error updating student status:", error);
+    }
   };
-
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl); // Show the clicked image in modal
   };
@@ -62,9 +83,9 @@ function StudentDetails() {
   };
   return (
     <div className={styles.applicantContainer}>
-             <button className={styles.mainBackButton} onClick={handleBack}>
+             {/* <button className={styles.mainBackButton} onClick={handleBack}>
                    <IoArrowBack /> Back
-                 </button>
+                 </button> */}
       <h2>Student Details</h2>
       {loading ? (
         <p>Loading students...</p>
@@ -116,7 +137,7 @@ function StudentDetails() {
                     </td>
                     <td>{student.address || 'N/A'}</td>
                     <td>
-                        {student.status=="under-reviw" || student.status=="pending" ?(
+                    {student.status === "under-review" || student.status === "pending" ? (
  <button className={styles.btnViewCLick} onClick={() => handleViewClick(student._id)}>
  Review
 </button>

@@ -149,7 +149,9 @@ const Header = () => {
           )}
         </div>
       )}
-
+ <div className="mobile-home-icon d-lg-none"  onClick={() => navigate(userRole === "mentor" ? "/teachers" : "/learners")} style={{ position: 'absolute',  right: '5px',marginRight : "75px" }}> 
+            <FaHome style={{ fontSize: '1.5rem', cursor: 'pointer' }} />
+          </div>
       {/* Modal for Login/Signup */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>

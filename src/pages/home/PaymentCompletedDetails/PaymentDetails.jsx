@@ -1,20 +1,19 @@
-
-
 import React, { useEffect, useState } from "react";
 import styles from "./PaymentDetails.module.css";
-import { CheckCircle, CreditCard, Calendar, MapPin, FileText, Book } from "lucide-react";
+import { CheckCircle, FileText, User, Mail, Phone, MapPin } from "lucide-react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthStatus } from "../../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../../../config/config";
 
+
+
 function PaymentDetails() {
   const { loggedIn, user, loading, userPhoto, username, userId } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [students, setStudents] = useState([]);
-  const [courses, setCourses] = useState([]);
   const [payments, setPayments] = useState([]);
 
   useEffect(() => {
@@ -30,13 +29,11 @@ function PaymentDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [coursesRes, paymentsRes, studentsRes] = await Promise.all([
-          axios.get(`${API_BASE_URL}/api/auth/get-course`),
+        const [paymentsRes, studentsRes] = await Promise.all([
           axios.get(`${API_BASE_URL}/api/auth/get-payments`),
           axios.get(`${API_BASE_URL}/api/auth/get-user`),
         ]);
 
-        setCourses(coursesRes.data);
         setPayments(paymentsRes.data);
         setStudents(studentsRes.data);
       } catch (error) {
@@ -71,7 +68,6 @@ function PaymentDetails() {
         {students.map((student) => {
           const studentInCourse = payments.find((payment) => student._id === payment.userId && payment.teacherId === userId);
           const paymentForCourse = studentInCourse || {};
-          const course = courses.find((c) => c._id === paymentForCourse.courseId);
 
           if (studentInCourse?.status === "success") {
             return (
@@ -83,34 +79,29 @@ function PaymentDetails() {
                   <span>Payment Completed</span>
                 </div>
 
-                {course && (
-                  <div className={styles.paymentDetails}>
-                    <p className={styles.paymentInfo}>
-                      <Book className={styles.icon} />
-                      <strong> Course Name:</strong> {course.courseName}
-                    </p>
-                    <p className={styles.paymentInfo}>
-                      <Calendar className={styles.icon} />
-                      <strong> Course Join Date:</strong> {new Date(course.startDate).toLocaleDateString()}
-                    </p>
-                    <p className={styles.paymentInfo}>
-                      <MapPin className={styles.icon} />
-                      <strong> Location:</strong> {studentInCourse?.institutionAddress || "Not Provided"}
-                    </p>
-                    <p className={styles.paymentInfo}>
-                      <FileText className={styles.icon} />
-                      <strong> Payment ID:</strong> {paymentForCourse?._id || "N/A"}
-                    </p>
-                    {paymentForCourse._id && (
-                      <a
-                        onClick={() => handleReceiptClick(paymentForCourse._id)}
-                        style={{ textDecoration: "underline", color: "black", cursor: "pointer" }}
-                      >
-                        Click here for more details
-                      </a>
-                    )}
-                  </div>
-                )}
+                <div className={styles.paymentDetails}>
+                  <p className={styles.paymentInfo}>
+                    <User className={styles.icon} />
+                    <strong> Name:</strong> {student.name}
+                  </p>
+                  <p className={styles.paymentInfo}>
+                    <Mail className={styles.icon} />
+                    <strong> Email:</strong> {student.email || "Not Provided"}
+                  </p>
+                  <p className={styles.paymentInfo}>
+                    <Phone className={styles.icon} />
+                    <strong> Phone:</strong> {student.phoneNumber || "Not Provided"}
+                  </p>
+                  <p className={styles.paymentInfo}>
+                    <MapPin className={styles.icon} />
+                    <strong> Address:</strong> {student.address || "Not Provided"}
+                  </p>
+                  <p className={styles.paymentInfo}>
+                    <FileText className={styles.icon} />
+                    <strong> Payment ID:</strong> {paymentForCourse?._id || "N/A"}
+                  </p>
+                 
+                </div>
               </div>
             );
           }
@@ -127,8 +118,3 @@ function PaymentDetails() {
 }
 
 export default PaymentDetails;
-
-
-
-
-

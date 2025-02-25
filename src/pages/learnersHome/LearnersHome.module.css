@@ -67,6 +67,8 @@ body {
 
 
 .navLinks {
+  width: 14rem;
+
   max-height: 500px; /* Adjust as needed */
   overflow-y: auto; /* Enables vertical scrolling */
   overflow-x: hidden; /* Hides horizontal scrolling */

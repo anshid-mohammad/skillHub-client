@@ -78,9 +78,9 @@ function ProgressBar() {
 
   return (
     <div className={styles.scrollableContainer}>
-        <button className={styles.mainBackButton} onClick={handleBack}>
+        {/* <button className={styles.mainBackButton} onClick={handleBack}>
                          <IoArrowBack /> Back
-                       </button>
+                       </button> */}
       {application.map((item) =>
         userId === item.teacherId ? (
           <div key={item._id} className={styles.progressContainer}>

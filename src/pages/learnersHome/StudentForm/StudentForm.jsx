@@ -4,8 +4,8 @@ import { checkAuthStatus } from '../../../redux/UserSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
 import API_BASE_URL from "../../../config/config";
+import { toast, ToastContainer } from 'react-toastify';
 
 
 function StudentsForm() {
@@ -192,6 +192,8 @@ if(response.data){
   };
   return (
     <div className={styles.container}>
+                  <ToastContainer position="top-right" autoClose={3000} />
+
       <div className={styles.leftDiv}>
         <img className={styles.signupImg} src="../../../images/signup.png" alt="Learning" />
         <h1 className={styles.headertext}>

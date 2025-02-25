@@ -91,7 +91,7 @@
 @media (max-width: 768px) {
   .container {
     width: 100%;
-    height: auto;
+    height: 44rem;
     padding: 0.8rem;
   }
   .mainBackButton {
@@ -110,6 +110,58 @@
 
   .contactCard {
     width: 100%;
-    max-width: 220px;
+    max-width: 250px;
   }
+}
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .container {
+    width: 100%;
+    height: 53rem;
+    padding: 0.8rem;
+  }
+  .mainBackButton {
+    display: none;
+   
+  }
+  .brand {
+    justify-content: center;
+  }
+
+  .contactsList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contactCard {
+    width: 100%;
+    max-width: 250px;
+  }
+
+}
+@media screen and (max-width: 1366px) and (min-width: 1024px) {
+  .container {
+    width: 100%;
+    height: 53rem;
+    padding: 0.8rem;
+  }
+  .mainBackButton {
+    display: none;
+   
+  }
+  .brand {
+    justify-content: center;
+  }
+
+  .contactsList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contactCard {
+    width: 100%;
+    max-width: 250px;
+  }
+
 }

@@ -32,6 +32,8 @@ import ViewCourses from "./pages/home/approvedCourses/viewCourses/ViewCourses";
 import ViewApprovedCourses from "./pages/home/yourCourses/viewApprovedCourses/ViewApprovedCourse";
 import MentorList from "./pages/admin/mentorDetails/MentorList";
 import UserList from "./pages/admin/userDetails/UserList";
+import UnderReview from "./pages/home/yourCourses/under-reviewCourses/UnderReview";
+import PendingCourses from "./pages/home/yourCourses/pendingCourses/PendingCourses";
 
 
 
@@ -39,6 +41,8 @@ function App() {
   return (
     <div className="App">
       <Header/>
+      {/* teacher SEction */}
+
         <Routes>
         <Route  path='/' element={<Home/>}></Route>
         <Route  path='/signup' element={<Signup/>}></Route>
@@ -50,9 +54,21 @@ function App() {
         <Route  path='/edit-teacher-profile' element={<EditTeacherProfile/>}></Route>
         <Route  path='/Progress-bar' element={<ProgressBar/>}></Route>
         <Route  path='/view-course/:id' element={<ViewCourses/>}></Route>
+<Route  path='/teachers-form' element={<TeachersForm/>}></Route>
+        <Route  path='/student-Details' element={<StudentDetails/>}></Route>
+        <Route  path='/student-list/:id' element={<StudentList/>}></Route>
+        <Route  path='/progress-bar' element={<ProgressBar/>}></Route>
+        <Route  path='/chat' element={<Chat/>}></Route>
+        <Route  path='/view-more/:id' element={<ViewMore/>}></Route>
+        <Route  path='/view-approved-course' element={<ViewApprovedCourses/>}></Route>
+        <Route  path='/under-review' element={<UnderReview/>}></Route>
+        <Route  path='/pending-courses' element={<PendingCourses/>}></Route>
 
 
 
+
+
+{/* student section */}
         <Route  path='/learners' element={<LearnersHome/>}></Route>
         <Route  path='/course-details/:id' element={<CourseDetailsPage/>}></Route>
         <Route  path='/student-form' element={<StudentsForm/>}></Route>
@@ -67,14 +83,6 @@ function App() {
 
 
 
-
-        <Route  path='/teachers-form' element={<TeachersForm/>}></Route>
-        <Route  path='/student-Details' element={<StudentDetails/>}></Route>
-        <Route  path='/student-list/:id' element={<StudentList/>}></Route>
-        <Route  path='/progress-bar' element={<ProgressBar/>}></Route>
-        <Route  path='/chat' element={<Chat/>}></Route>
-        <Route  path='/view-more/:id' element={<ViewMore/>}></Route>
-        <Route  path='/view-approved-course' element={<ViewApprovedCourses/>}></Route>
 
 
         <Route  path='/sample' element={<Sample/>}></Route>

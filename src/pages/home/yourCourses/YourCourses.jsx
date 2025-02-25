@@ -54,7 +54,14 @@ function YourCourses() {
   const handleApprovedCourse = () => {
     navigate(`/view-approved-course`);
   };
+const handleUnderReviewCourse=()=>{
+  navigate(`/under-review`);
 
+}
+const handlePendingCourse=()=>{
+  navigate(`/pending-courses`);
+
+}
   // Function to update the course stats
   const updateStats = (courses) => {
     let approvedCount = 0;
@@ -117,12 +124,12 @@ function YourCourses() {
               <span className={styles.statNumber}>{stats.approved}</span>
               <span className={styles.statLabel}>Approved</span>
             </div>
-            <div className={`${styles.statItem} ${styles.pending}`}>
+            <div  onClick={handleUnderReviewCourse} className={`${styles.statItem} ${styles.pending}`}>
               <Hourglass className={styles.icon} />
               <span className={styles.statNumber}>{stats.underReview}</span>
               <span className={styles.statLabel}>Under Review</span>
             </div>
-            <div className={`${styles.statItem} ${styles.inProgress}`}>
+            <div onClick={handlePendingCourse} className={`${styles.statItem} ${styles.inProgress}`}>
               <Clock className={styles.icon} />
               <span className={styles.statNumber}>{stats.inProgress}</span>
               <span className={styles.statLabel}>Pending</span>

@@ -1,187 +1,195 @@
 .container {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-    background: linear-gradient(135deg, #ffffff, #f9f9f9);
-    border-radius: 12px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    position: relative; /* For positioning the close button */
-    overflow: hidden;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80%;
+  padding: 1rem;
+  overflow: hidden;
+  background-color: white;
+}
+
+.mainBackButton {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  color: #000000;
+}
+.headerOne {
+  font-family: initial;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.detailsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  width: 80%;
+}
+
+.photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.detailsGroup {
+  width: 100%;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+}
+
+.detailsGroup p {
   
-  .headerOne {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #444;
-    background: linear-gradient(90deg, #007bff, #00c6ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .detailsCard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: left;
-  }
-  
-  .photo {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    border: 3px solid #007bff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .photo:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
-  }
-  
-  /* p {
-    margin: 10px 0;
-    font-size: 16px;
-    color: #555;
-  }
-   */
-  p strong {
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .link {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-  }
-  
-  a:hover {
-    color: #0056b3;
-    border-bottom: 1px solid #0056b3;
-  }
-  
-  .error {
-    color: red;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  /* Close button styled as a modern "X" in the top-right corner */
-  .backButton {
-    margin-right: auto;
-    display: flex;
-    align-items: center;
-    background: none;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .backButton:hover {
-    color: #000000;
-  }
-  
-  /* Approve and Decline buttons */
-  .actionButtons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    padding: 10px 20px;
-  }
-  
-  .approveButton,
-  .declineButton {
-    flex: 1;
-    max-width: 140px;
-    margin: 0 10px;
-    padding: 12px 18px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .approveButton {
-    background: linear-gradient(90deg, #28a745, #4caf50);
-  }
-  
-  .approveButton:hover {
-    background: linear-gradient(90deg, #218838, #388e3c);
-    transform: translateY(-3px);
-  }
-  
-  .declineButton {
-    background: linear-gradient(90deg, #dc3545, #f44336);
-  }
-  
-  .declineButton:hover {
-    background: linear-gradient(90deg, #c82333, #d32f2f);
-    transform: translateY(-3px);
-  }
-  
-  /* Modal styles */
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modalContent {
-    margin-top: 50px;
-    background: linear-gradient(135deg, #ffffff, #f1f1f1);
-    padding: 20px;
-    border-radius: 12px;
-    position: relative;
-    text-align: center;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .modalImage {
-    max-width: 100%;
-    max-height: 80vh;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-  }
-  
-  .modalImage:hover {
-    transform: scale(1.05);
-  }
-  
-  .closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    color: #e11313;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 5px;
-    transition: transform 0.2s ease, color 0.3s ease;
-    border-radius: 50%;
-  }
-  
-  .closeButton:hover {
-    transform: scale(1.2);
-    color: #ff4d4d;
-    background: rgba(225, 19, 19, 0.1);
-  }
-  
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #555;
+}
+
+.icon {
+  margin-right: 0.5rem;
+  color: #007bff;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  position: relative;
+}
+
+.modalImage {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.closeButton {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: white;
+  color: black;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.backButton {
+  margin-right: auto;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.backButton:hover {
+  color: #000000;
+}
+
+
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.approveButton {
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.approveButton:hover {
+  background: #218838;
+}
+
+.declineButton {
+  background: #dc3545;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.declineButton:hover {
+  background: #c82333;
+}
+
+.popup {
+  margin-top: 20px;
+  position: fixed;
+  top: 25px;
+  right: 20px;
+  background: #28a745;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
