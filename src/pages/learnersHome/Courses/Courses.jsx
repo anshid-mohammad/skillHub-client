@@ -119,7 +119,7 @@ function Courses() {
                 <div className={styles.pricing}>
                   {course.discount && <span className={styles.originalPrice}>₹{course.price}</span>}
                   <span className={styles.discountedPrice}>
-                    ${calculateDiscountedPrice(course.price, course.discount)}
+                  ₹{calculateDiscountedPrice(course.price, course.discount)}
                   </span>
                 </div>
 

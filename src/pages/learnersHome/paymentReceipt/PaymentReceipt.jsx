@@ -4,11 +4,14 @@ import styles from './PaymentReceipt.module.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatus } from '../../../redux/UserSlice';
-import { IoArrowBack } from 'react-icons/io5'; // Import back icon
-import API_BASE_URL from "../../../config/config";
-
+import { IoArrowBack } from 'react-icons/io5';
+import { FaUniversity, FaChalkboardTeacher, FaRupeeSign } from 'react-icons/fa';
+import { AiOutlineCalendar } from 'react-icons/ai';
+import { MdOutlineLibraryBooks } from 'react-icons/md';
+import API_BASE_URL from '../../../config/config';
 
 function PaymentReceipt() {
+  const [selectedImage, setSelectedImage] = useState(null);
   const [courseDetails, setCourseDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -16,7 +19,7 @@ function PaymentReceipt() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-console.log(id)
+
   useEffect(() => {
     dispatch(checkAuthStatus());
   }, [dispatch]);
@@ -33,7 +36,6 @@ console.log(id)
         setLoading(true);
         const response = await axios.get(`${API_BASE_URL}/api/auth/get-courseid/${id}`);
         setCourseDetails(response.data);
-        console.log(response.data)
       } catch (err) {
         setError('Failed to fetch course details. Please try again later.');
       } finally {
@@ -45,51 +47,73 @@ console.log(id)
   }, [id]);
 
   const handleBack = () => navigate('/learners');
-
+  const handleImageClick = (imageUrl) => setSelectedImage(imageUrl);
+  const closeModal = () => setSelectedImage(null);
+  
   if (loading) return <p>Loading course details...</p>;
   if (error) return <p className={styles.error}>{error}</p>;
 
   return (
     <div className={styles.container}>
-  
-                    <h1 className={styles.headerOne}>Course Details</h1>
+      <h1 className={styles.headerOne}>Course Details</h1>
 
       {courseDetails ? (
-        <div className={styles.courseCard}>
-            <button className={styles.backButton} onClick={handleBack}>
-                  <IoArrowBack /> Back
-                </button>  
+        <div className={styles.detailsCard}>
+          <button className={styles.mainBackButton} onClick={handleBack}>
+            <IoArrowBack /> Back
+          </button>
           <img
-            src={courseDetails.photo || 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'}
+            src={courseDetails.photo || 'https://media.istockphoto.com/id/1354776457/vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo.jpg?s=612x612&w=0&k=20&c=w3OW0wX3LyiFRuDHo9A32Q0IUMtD4yjXEvQlqyYk9O4='}
             alt="Course"
             className={styles.photo}
+            // onClick={() => handleImageClick(courseDetails.photo || '/images/default-avatar.png')}
           />
-          <p><strong>Course Name:</strong> {courseDetails.courseName}</p>
-          <p><strong>Description:</strong> {courseDetails.description}</p>
-          <p><strong>Category:</strong> {courseDetails.category}</p>
-          <p><strong>Level:</strong> {courseDetails.level}</p>
-          <p><strong>Teacher:</strong> {courseDetails.teacherName} (Contact: {courseDetails.teacherContact})</p>
-          <p><strong>Institution:</strong> {courseDetails.institutionName}, {courseDetails.institutionAddress}</p>
-          <p><strong>Course Duration:</strong> {courseDetails.courseDuration}</p>
-          <p><strong>Schedule:</strong> {courseDetails.schedule}</p>
-          <p><strong>Start Date:</strong> {new Date(courseDetails.startDate).toLocaleDateString()}</p>
-          <p><strong>End Date:</strong> {new Date(courseDetails.endDate).toLocaleDateString()}</p>
-          <p><strong>Frequency:</strong> {courseDetails.frequency}</p>
-          <p><strong>Price:</strong> ₹{courseDetails.price}</p>
-          {courseDetails.discount && <p><strong>Discount:</strong> {courseDetails.discount}</p>}
+          <div className={styles.detailsGroup}>
+            <p><strong>📖 Course Name:</strong> {courseDetails.courseName}</p>
+            <p><strong>📜 Description:</strong> {courseDetails.description}</p>
+            <p><strong>🗂️ Category:</strong> {courseDetails.category}</p>
+            <p><strong>⚡ Level:</strong> {courseDetails.level}</p>
+            <p><strong><FaChalkboardTeacher /> Teacher:</strong> {courseDetails.teacherName} (Contact: {courseDetails.teacherContact})</p>
+            <p><strong><FaUniversity /> Institution:</strong> {courseDetails.institutionName}, {courseDetails.institutionAddress}</p>
+            <p><strong>⏳ Course Duration:</strong> {courseDetails.courseDuration}</p>
+            <p><strong>📅 Schedule:</strong> {courseDetails.schedule}</p>
+            <p><strong><AiOutlineCalendar /> Start Date:</strong> {new Date(courseDetails.startDate).toLocaleDateString()}</p>
+            <p><strong><AiOutlineCalendar /> End Date:</strong> {new Date(courseDetails.endDate).toLocaleDateString()}</p>
+            <p><strong>🔁 Frequency:</strong> {courseDetails.frequency}</p>
+            <p><strong><FaRupeeSign /> Price:</strong> ₹{courseDetails.price}</p>
+            {courseDetails.discount && <p><strong>🔥 Discount:</strong> {courseDetails.discount}%</p>}
+<ul>
+<h3><MdOutlineLibraryBooks /> Lessons</h3>
 
-          <h3>Lessons</h3>
-          <ul>
-            {courseDetails.lessons.map((lesson, index) => (
-              <li key={index}><strong>{lesson.title}:</strong> {lesson.description}</li>
-            ))}
-          </ul>
+  {courseDetails.lessons.map((lesson, index) => (
+    <li key={index}><strong>{lesson.title}:</strong> {lesson.description}</li>
+  ))}
+</ul>
+          </div>
+          <div className={styles.actionButtons}>
+            <p>Join Now</p>
+          </div>
         </div>
       ) : (
-        <p>No course details available.</p>
+        <p>No details available for this course.</p>
+      )}
+
+      {selectedImage && (
+        <div className={styles.modal} onClick={closeModal}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <img src={selectedImage} alt="Selected" className={styles.modalImage} />
+            <button className={styles.closeButton} onClick={closeModal}>&times;</button>
+          </div>
+        </div>
       )}
     </div>
   );
 }
 
 export default PaymentReceipt;
+
+
+
+
+
+

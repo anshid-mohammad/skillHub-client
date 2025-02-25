@@ -1,142 +1,183 @@
-/* PaymentReceipt.module.css */
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #f8f9fa;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80%;
+  padding: 1rem;
+  overflow: hidden;
+  background-color: white;
 }
 
-.headerOne {
-  text-align: center;
-  color: #2c3e50;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  font-weight: 600;
-}
-
-.courseCard {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  position: relative;
-  margin-top: 2rem;
-}
-
-.backButton {
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  color: rgb(17, 16, 16);
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
+/* Back Button */
+.mainBackButton {
+  margin-right: auto;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
 }
 
+.mainBackButton:hover {
+  color: #003f7f;
+}
 
+/* Header */
+.headerOne {
+  font-family: "Arial", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
 
+/* Details Card */
+.detailsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Photo */
 .photo {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  border-radius: 8px;
-  margin: 1rem auto 2rem;
-  display: block;
+  width: 150px;
+  height: 150px;
+  border-radius: 10%;
   object-fit: cover;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease-in-out;
 }
 
-.courseCard p {
-  font-size: 1.1rem;
-  margin: 0.8rem 0;
-  color: #34495e;
-  line-height: 1.6;
+.photo:hover {
+  transform: scale(1.1);
 }
 
-.courseCard strong {
-  color: #2c3e50;
-  font-weight: 600;
+/* Details Group */
+.detailsGroup {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.detailsGroup p {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Icon Styling */
+.icon {
+  font-size: 1.2rem;
+  color: #007bff;
   margin-right: 0.5rem;
 }
 
-.courseCard h3 {
-  color: #2c3e50;
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Chat Button */
+.chatButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.chatButton:hover {
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+  transform: scale(1.05);
+}
+
+/* Links */
+.link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: text-decoration 0.3s ease-in-out;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  position: relative;
+}
+
+.modalImage {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+/* Close Button for Modal */
+.closeButton {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: white;
+  color: black;
+  border: none;
   font-size: 1.5rem;
-  margin: 2rem 0 1rem;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease-in-out;
 }
 
-.courseCard ul {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
+.closeButton:hover {
+  background: #ff4c4c;
+  color: white;
 }
 
-.courseCard li {
-  background-color: #f8f9fa;
-  padding: 1rem;
-  margin: 0.5rem 0;
-  border-radius: 6px;
-  border-left: 4px solid #3498db;
-}
-
+/* Error Message */
 .error {
-  color: #e74c3c;
+  color: red;
+  font-weight: bold;
   text-align: center;
-  font-size: 1.2rem;
-  margin: 2rem 0;
-}
-
-.loading {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #7f8c8d;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .headerOne {
-    font-size: 2rem;
-    margin-top: 2rem;
-  }
-
-  .courseCard {
-    padding: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .backButton {
-    top: 1rem;
-    left: 1rem;
-    padding: 0.4rem 0.8rem;
-  }
-
-  .photo {
-    margin: 0.5rem auto 1.5rem;
-  }
-
-  .courseCard p {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .headerOne {
-    font-size: 1.75rem;
-  }
-
-  .courseCard {
-    padding: 1rem;
-  }
-
-  .courseCard h3 {
-    font-size: 1.3rem;
-  }
+  margin-top: 1rem;
 }

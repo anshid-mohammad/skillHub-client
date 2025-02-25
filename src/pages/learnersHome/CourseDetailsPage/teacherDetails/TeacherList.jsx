@@ -50,10 +50,10 @@ console.log(id)
                     <IoArrowBack /> Back
                   </button>
           <img
-            src={studentDetails.photo || 'https://media.istockphoto.com/id/1354776457/vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo.jpg?s=612x612&w=0&k=20&c=w3OW0wX3LyiFRuDHo9A32Q0IUMtD4yjXEvQlqyYk9O4='}
+            src={studentDetails.photo || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xKMudVFtik4Lw_hXqz_VD2tZtPlBDezD0w&s'}
             alt="Student"
             className={styles.photo}
-            onClick={() => handleImageClick(studentDetails.photo || '/images/default-avatar.png')}
+            onClick={() => handleImageClick(studentDetails.photo || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xKMudVFtik4Lw_hXqz_VD2tZtPlBDezD0w&s')}
           />
           <div className={styles.detailsGroup}>
             <p><FaUser className={styles.icon} /> <strong>Teacher Name:</strong> {studentDetails.name}</p>

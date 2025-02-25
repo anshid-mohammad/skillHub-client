@@ -117,7 +117,14 @@
     width: 90%;
     order: 1;
   }
-
+  .navbar .dropdown-toggle{
+    display: none;
+  }
+  .rounded-search {
+   margin-right: 50px;
+   width: 90%;
+  }
+  
   .navbar-brand {
     order: 1;
     text-align: center;
@@ -143,6 +150,7 @@
   .navbar .nav-link {
     font-size: 14px;
     padding: 8px;
+    display: none;
   }
 
   .navbar .dropdown-menu {

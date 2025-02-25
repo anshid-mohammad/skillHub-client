@@ -36,9 +36,9 @@ function ApprovedCourses() {
     };
     fetchApplications();
   }, []);
-  const handleBack =()=>{
-    navigate("/learners")
-  }
+  // const handleBack =()=>{
+  //   navigate("/learners")
+  // }
   const handleviewclick=(id)=>{
     navigate(`/view-course/${id}`)
   }
@@ -74,7 +74,7 @@ const handleChatclick=()=>{
 }
   return (
     <div className={styles.progressContainer}>
-              <button onClick={handleBack} className={styles.backButton}>←</button>
+              {/* <button onClick={handleBack} className={styles.backButton}>←</button> */}
         
       <h2>My Course Progress</h2>
       {application.filter((item)=>item.status==="approved")
@@ -117,7 +117,7 @@ const handleChatclick=()=>{
             {item.status === "approved" && (
               <div className={styles.actionButtons}>
                 <button onClick={()=>handleviewclick(item._id)} className={styles.paymentButton}>View More</button>
-                <button onClick={handleChatclick} className={styles.paymentButton}>Chat</button>
+                {/* <button onClick={handleChatclick} className={styles.paymentButton}>Chat</button> */}
 
               </div>
             )}
