@@ -43,8 +43,6 @@ const teacherId = queryParams.get("teacherId");
         setLoading(true);
         const response = await axios.get(`${API_BASE_URL}/api/auth/get-courseid/${id}`);
         setStudentDetails(response.data);
-        console.log("course",response.data)
-
       } catch (err) {
         setError('Failed to fetch student details. Please try again later.');
       } finally {
@@ -111,7 +109,6 @@ const teacherId = queryParams.get("teacherId");
   
             setPaymentSuccess(true); // Show success popup
             navigate("/learners")
-
           } catch (error) {
             console.error("Error storing payment:", error);
             alert("Payment recorded failed, please contact support.");
@@ -152,10 +149,10 @@ const teacherId = queryParams.get("teacherId");
                           <IoArrowBack /> Back
                         </button>
           <img
-            src={studentDetails.photo || 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'}
+            src={studentDetails.photo || '/images/default-avatar.png'}
             alt="Course"
             className={styles.photo}
-            onClick={() => handleImageClick(studentDetails.photo || 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg')}
+            onClick={() => handleImageClick(studentDetails.photo || '/images/default-avatar.png')}
           />
           <div className={styles.detailsGroup}>
             <p><FaBook className={styles.icon} /> <strong>Course Name:</strong> {studentDetails.courseName}</p>
