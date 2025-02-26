@@ -43,6 +43,8 @@ const teacherId = queryParams.get("teacherId");
         setLoading(true);
         const response = await axios.get(`${API_BASE_URL}/api/auth/get-courseid/${id}`);
         setStudentDetails(response.data);
+        console.log("course",response.data)
+
       } catch (err) {
         setError('Failed to fetch student details. Please try again later.');
       } finally {
