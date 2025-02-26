@@ -20,7 +20,7 @@ import { checkAuthStatus, logout } from "../../redux/UserSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { userId, username, userRole } = useSelector((state) => state.auth);
+  const { userId, username, userRole,loggedIn } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
@@ -82,7 +82,7 @@ const Header = () => {
         </Form>
 
         {/* Toggle Button */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        {!loggedIn && <Navbar.Toggle aria-controls="basic-navbar-nav" />}
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
@@ -149,10 +149,19 @@ const Header = () => {
           )}
         </div>
       )}
- <div className="mobile-home-icon d-lg-none"  onClick={() => navigate(userRole === "mentor" ? "/teachers" : "/learners")} style={{ position: 'absolute',  right: '5px',marginRight : "75px" }}> 
+    {loggedIn&&userRole ? ( <div className="mobile-home-icon d-lg-none"  onClick={() => navigate(userRole === "mentor" ? "/teachers" : "/learners")} style={{ position: 'absolute',  right: '5px',marginRight : "75px" }}> 
             <FaHome style={{ fontSize: '1.5rem', cursor: 'pointer' }} />
-          </div>
-      {/* Modal for Login/Signup */}
+          </div>):null}
+      {loggedIn ? (
+  <div 
+    className="mobile-notification-icon d-lg-none"  
+    onClick={() => navigate('/notifications')} 
+    style={{ position: 'absolute', right: '5px', marginRight: "25px" }}
+  > 
+    <FaBell style={{ fontSize: '1.5rem', cursor: 'pointer' }} />
+  </div>
+) : null}
+
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>
