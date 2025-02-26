@@ -54,7 +54,7 @@
 .navbar .dropdown-toggle {
   color: #000;
   font-weight: bold;
-  display: flex;
+  display: none;
   align-items: center;
 }
 
@@ -114,15 +114,16 @@
 @media (max-width: 768px) {
   .search-bar {
     margin: 10px 0;
-    width: 90%;
+    width: 80%;
     order: 1;
   }
+
   .navbar .dropdown-toggle{
     display: none;
   }
   .rounded-search {
-   margin-right: 50px;
-   width: 90%;
+   margin-right: 140px;
+   width: 80%;
   }
   
   .navbar-brand {
@@ -162,6 +163,7 @@
     font-size: 14px;
     text-align: center;
   }
+  
 }
 
 /* For larger screens */
@@ -172,3 +174,20 @@
     margin-left: 2rem;
   }
 }
+.notification-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgb(50, 125, 21);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+

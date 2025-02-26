@@ -164,6 +164,14 @@ if(response.data){
  toast.success('Course created successfully!');
       setTimeout(() => navigate('/learners'), 3000);
       console.log('Course created:', response.data);}
+
+
+      await axios.post('/api/auth/create-notification', {
+        studentId: userId,
+        courseId: courseId,
+        teacherId: teacherId,
+        message: `Your have a student request ${formData.name} has been submitted successfully.`,
+      });
       setMessage(response.data.message);
       setFormData({
         name: '',

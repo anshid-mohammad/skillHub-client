@@ -1,0 +1,153 @@
+.container {
+    display: flex;
+    justify-content: center;
+    min-height: 90vh;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    padding: 20px;
+  }
+  
+  .notificationBox {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h2 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .bellIcon {
+    font-size: 28px;
+    color: #ff6b6b;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .bellIcon:hover {
+    transform: scale(1.1);
+  }
+  
+  .noNotifications {
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+    margin: 20px 0;
+  }
+  
+  .notificationList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .notificationItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .notificationItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notificationMessage {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .timestamp {
+    font-size: 12px;
+    color: #888;
+    margin: 5px 0 0;
+  }
+  
+  .checkIcon {
+    font-size: 20px;
+    color: #4caf50;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .checkIcon:hover {
+    transform: scale(1.2);
+  }
+  .bellContainer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .notificationCount {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .clearButton {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .clearButton:hover {
+    background-color: #cc0000;
+  }
+  
+  .clearButton svg {
+    font-size: 16px;
+  }
+  

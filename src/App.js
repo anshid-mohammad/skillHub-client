@@ -34,6 +34,7 @@ import MentorList from "./pages/admin/mentorDetails/MentorList";
 import UserList from "./pages/admin/userDetails/UserList";
 import UnderReview from "./pages/home/yourCourses/under-reviewCourses/UnderReview";
 import PendingCourses from "./pages/home/yourCourses/pendingCourses/PendingCourses";
+import Notification from "./pages/notifications/Notification";
 
 
 
@@ -66,6 +67,7 @@ function App() {
 
 
 
+        <Route  path='/notifications' element={<Notification/>}></Route>
 
 
 {/* student section */}

@@ -86,6 +86,11 @@ function StudentList() {
       setStudentDetails((prev) => ({ ...prev, status: "approved" }));
       toast.success('Student Details Approved successfully!');
       setTimeout(() => navigate('/teachers'), 3000);
+      await axios.post('/api/auth/create-notification-mentor', {
+        studentId: studentDetails.studentId,  // ✅ Now correctly storing the student's ID
+        message: `Your admission form has been approved successfully! , name :${studentDetails.name}`,
+      });
+
     } catch (error) {
       console.error("Error approving student:", error);
       toast.success('find some error!');
@@ -103,7 +108,7 @@ function StudentList() {
     if (!window.confirm("Are you sure you want to decline this student?")) return;
 
     try {
-      const response = await axios.delete(`/api/auth/delete-student/${id}`);
+      const response = await axios.delete(`${API_BASE_URL}/api/auth/delete-student/${id}`);
       showPopup(response.data.message || "Student declined successfully!");
       navigate("/teachers");
     } catch (err) {

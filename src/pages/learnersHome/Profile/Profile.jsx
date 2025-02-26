@@ -80,7 +80,7 @@ const handleGoEdit = () => {
             {/* Profile Photo */}
             <div className={styles.photoSection}>
               <div className={styles.photoWrapper}>
-                <img                           onClick={() => handleImageClick(details.photo || '/default-avatar.png')} // Handle image click
+                <img  onClick={() => handleImageClick(details.photo || '/default-avatar.png')} // Handle image click
 
                 src={details.photo || defaultProfileImage} alt="Profile" className={styles.profilePhoto} />
                 <label htmlFor="photoUpload" className={styles.cameraIcon}>
@@ -123,12 +123,12 @@ const handleGoEdit = () => {
           </div>
         </div>
               )}
+      <ToastContainer />
 
         {/* Error Message */}
         {error && <p className={styles.error}>{error}</p>}
         
       </div>
-      <ToastContainer />
 
     </div>
     

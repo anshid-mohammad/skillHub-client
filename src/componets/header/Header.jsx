@@ -1,39 +1,25 @@
-
-import React, { useState, useEffect } from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  Button,
-  Form,
-  FormControl,
-  Modal,
-  Dropdown,
-  DropdownButton,
-} from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./Header.css";
-import { useNavigate } from "react-router-dom";
-import { FaCog, FaHome, FaBell } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { Navbar, Nav, Container, Button, Form, FormControl, Modal, Dropdown, DropdownButton } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Header.css';
+import { useNavigate } from 'react-router-dom';
+import { FaCog, FaHome, FaBell } from 'react-icons/fa';  // Added icons
+import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatus, logout } from "../../redux/UserSlice";
+import axios from 'axios';
+import API_BASE_URL from "../../config/config";
 
 const Header = () => {
   const dispatch = useDispatch();
   const { userId, username, userRole,loggedIn } = useSelector((state) => state.auth);
+  console.log("header", userRole);
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [filteredResults, setFilteredResults] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [isLoginModal, setIsLoginModal] = useState(false);
-
-  const data = ["Home", "About", "Courses", "Features", "Contact Us", "Register", "Login"];
-
-  const token = localStorage.getItem("token") || null;
-
-  useEffect(() => {
-    dispatch(checkAuthStatus());
-  }, [dispatch]);
+  const data = ['Home', 'About', 'Courses', 'Features', 'Contact Us', 'Register', 'Login'];
+  const [notificationCount, setNotificationCount] = useState(0); // ✅ Notification Count
 
   const handleSearch = (event) => {
     const term = event.target.value.toLowerCase();
@@ -41,31 +27,63 @@ const Header = () => {
     setFilteredResults(term ? data.filter((item) => item.toLowerCase().includes(term)) : []);
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
+  useEffect(() => {
+    dispatch(checkAuthStatus());
+  }, [dispatch]);
+  
+  const token = localStorage.getItem('token');
 
-  const handleRoleSelection = (role, isLogin) => {
+  function handleLogout() {
+    dispatch(logout());
+    navigate('/login');
+  }
+
+  const handleSignup = (userRole) => {
     setShowModal(false);
-    if (isLogin) {
-      navigate(role === "mentor" ? "/teacher-login" : "/login");
+    if (userRole === 'learner') {
+      navigate('/signup');
     } else {
-      navigate(role === "mentor" ? "/teacher-signup" : "/signup");
+      navigate('/teacher-signup');
     }
   };
 
+  const handleLogin = (userRole) => {
+    setShowModal(false);
+    if (userRole === 'mentor') {
+      navigate('/teacher-login');
+    } else {
+      navigate('/login');
+    }
+  };
+  useEffect(() => {
+    if (userId) {
+      fetchNotifications();
+    }
+  }, [userId]);
+  const fetchNotifications = async () => {
+    try {
+      if (!userId) return;
+
+      const response = await axios.get(`${API_BASE_URL}/api/auth/get-notification`, {
+        params: userRole === "learner" ? { studentId: userId } : { teacherId: userId },
+      });
+
+      setNotificationCount(response.data.length); // ✅ Set notification count
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+    }
+  };
   return (
     <Navbar expand="lg" bg="light" className="shadow sticky-top">
       <Container>
         {/* Logo with Text */}
         <Navbar.Brand href="/" className="d-flex flex-column align-items-center">
-          <img
-            src="/images/logo.png"
+          <img 
+            src="../../../images/logo.png"
             alt="Skill Hub Logo"
-            style={{ height: "40px", width: "auto" }}
+            style={{ height: '40px', width: 'auto' }}
           />
-          <span className="text-muted" style={{ fontSize: "14px", fontStyle: "italic" }}>
+          <span className="text-muted" style={{ fontSize: '14px', fontStyle: 'italic' }}>
             Skill Hub
           </span>
         </Navbar.Brand>
@@ -86,27 +104,37 @@ const Header = () => {
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link onClick={() => navigate(userRole ? (userRole === "mentor" ? "/teachers" : "/learners") : "/")}>
-              <FaHome style={{ fontSize: "1.2rem" }} />
-            </Nav.Link>
-            <Nav.Link href="/notifications">
-              <FaBell style={{ fontSize: "1.2rem" }} />
+            {/* Replaced Home Button with Home Icon */}
+            <Nav.Link onClick={() => navigate(userRole === "mentor" ? "/teachers" : "/learners")}>
+  <FaHome style={{ fontSize: '1.2rem' }} />
+</Nav.Link>
+
+            
+           {/* ✅ Notification Icon with Count */}
+           <Nav.Link href="/notifications" className="position-relative">
+              <FaBell style={{ fontSize: '1.2rem' }} />
+              {notificationCount > 0 && (
+                <span className="notification-badge">{notificationCount}</span>
+              )}
             </Nav.Link>
           </Nav>
 
           {token ? (
             <>
+              {/* Dropdown for settings */}
               <Dropdown>
                 <DropdownButton
                   variant="link"
                   id="dropdown-custom-components"
-                  title={<span><FaCog /></span>}
+                  title={<FaCog />} // Settings icon
                 >
                   <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                 </DropdownButton>
               </Dropdown>
-              <Nav.Link style={{ color: "rgb(9, 83, 20)", fontWeight: "bold" }}>
-                Welcome, {username || "Guest"}
+
+              {/* Welcome Username */}
+              <Nav.Link style={{ color: 'rgb(12, 80, 9)', fontWeight: 'bold' }}>
+                Welcome, {username}
               </Nav.Link>
             </>
           ) : (
@@ -147,35 +175,61 @@ const Header = () => {
           ) : (
             <div className="search-item text-muted">No results found</div>
           )}
+          
         </div>
       )}
-    {loggedIn&&userRole ? ( <div className="mobile-home-icon d-lg-none"  onClick={() => navigate(userRole === "mentor" ? "/teachers" : "/learners")} style={{ position: 'absolute',  right: '5px',marginRight : "75px" }}> 
-            <FaHome style={{ fontSize: '1.5rem', cursor: 'pointer' }} />
-          </div>):null}
-      {loggedIn ? (
+     {loggedIn && userRole ? (
+  <div 
+    className="mobile-home-icon d-lg-none"  
+    onClick={() => navigate(userRole === "mentor" ? "/teachers" : "/learners")} 
+    style={{ position: 'absolute', right: '5px', marginRight: "75px" }}
+  > 
+    <FaHome style={{ fontSize: '1.5rem', cursor: 'pointer' }} />
+  </div>
+) : null}
+
+{/* 📌 Added Notification Icon for Mobile View */}
+{loggedIn ? (
   <div 
     className="mobile-notification-icon d-lg-none"  
     onClick={() => navigate('/notifications')} 
     style={{ position: 'absolute', right: '5px', marginRight: "25px" }}
   > 
+            {notificationCount > 0 && <span className="notification-badge">{notificationCount}</span>}
+
     <FaBell style={{ fontSize: '1.5rem', cursor: 'pointer' }} />
   </div>
 ) : null}
 
+      {/* Modal for Login/Signup */}
+      
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>
-            {isLoginModal ? "Login as" : "Choose Your Role"}
+            {isLoginModal ? 'Login as' : 'Choose Your Role'}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="d-flex justify-content-around">
-            <Button variant="outline-primary" onClick={() => handleRoleSelection("learner", isLoginModal)}>
-              {isLoginModal ? "Learner Login" : "Learner Signup"}
-            </Button>
-            <Button variant="outline-primary" onClick={() => handleRoleSelection("mentor", isLoginModal)}>
-              {isLoginModal ? "Teacher Login" : "Teacher Signup"}
-            </Button>
+            {isLoginModal ? (
+              <>
+                <Button variant="outline-primary" onClick={() => handleLogin('learner')}>
+                  Learner Login
+                </Button>
+                <Button variant="outline-primary" onClick={() => handleLogin('mentor')}>
+                  Teacher Login
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button variant="outline-primary" onClick={() => handleSignup('learner')}>
+                  Learner Signup
+                </Button>
+                <Button variant="outline-primary" onClick={() => handleSignup('mentor')}>
+                  Teacher Signup
+                </Button>
+              </>
+            )}
           </div>
         </Modal.Body>
       </Modal>
