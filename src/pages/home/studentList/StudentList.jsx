@@ -81,10 +81,10 @@ function StudentList() {
       }
 
       // Update student status to "approved"
-      const updateResponse = await axios.put(`/api/auth/update-student/${id}`, { status: "approved" });
+      const updateResponse = await axios.put(`${API_BASE_URL}/api/auth/update-student/${id}`, { status: "approved" });
 
       setStudentDetails((prev) => ({ ...prev, status: "approved" }));
-      toast.success('Course created successfully!');
+      toast.success('Student Details Approved successfully!');
       setTimeout(() => navigate('/teachers'), 3000);
     } catch (error) {
       console.error("Error approving student:", error);
