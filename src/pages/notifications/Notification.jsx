@@ -5,6 +5,7 @@ import { FaBell, FaCheckCircle, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthStatus } from "../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../../config/config";
 
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);
@@ -27,7 +28,7 @@ const Notification = () => {
     try {
       if (!userId) return;
 
-      const response = await axios.get(`/api/auth/get-notification`, {
+      const response = await axios.get(`${API_BASE_URL}/api/auth/get-notification`, {
         params: userRole === "learner" ? { studentId: userId } : { teacherId: userId },
       });
 
@@ -42,7 +43,7 @@ const Notification = () => {
     try {
       if (!userId) return;
 
-      await axios.delete(`/api/auth/clear-notifications`, {
+      await axios.delete(`${API_BASE_URL}/api/auth/clear-notifications`, {
         data: userRole === "learner" ? { studentId: userId } : { teacherId: userId },
       });
 

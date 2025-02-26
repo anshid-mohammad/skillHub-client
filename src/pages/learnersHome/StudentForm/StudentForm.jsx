@@ -166,7 +166,7 @@ if(response.data){
       console.log('Course created:', response.data);}
 
 
-      await axios.post('/api/auth/create-notification', {
+      await axios.post(`${API_BASE_URL}/api/auth/create-notification`, {
         studentId: userId,
         courseId: courseId,
         teacherId: teacherId,

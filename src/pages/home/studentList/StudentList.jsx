@@ -86,7 +86,7 @@ function StudentList() {
       setStudentDetails((prev) => ({ ...prev, status: "approved" }));
       toast.success('Student Details Approved successfully!');
       setTimeout(() => navigate('/teachers'), 3000);
-      await axios.post('/api/auth/create-notification-mentor', {
+      await axios.post(`${API_BASE_URL}/api/auth/create-notification-mentor`, {
         studentId: studentDetails.studentId,  // ✅ Now correctly storing the student's ID
         message: `Your admission form has been approved successfully! , name :${studentDetails.name}`,
       });
